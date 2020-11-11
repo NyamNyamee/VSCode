@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // numOnly에 숫자만 입력되게 하시오!!! 입력과 동시에 경고창이 나타나고 숫자가 아닌 값은 지워진다.
+        window.onload = function(){
+            document.getElementById('numOnly').onkeyup = function(){
+                let value = this.value + "";
+                let ch = value.charAt(value.length-1); // 입력한 값 중 맨 마지막 값
+                if(isNaN(ch)){
+                    alert('숫자만 입력 가능합니다.');
+                    this.value = value.substr(0, value.length-1); // 값 중 맨 마지막값(숫자가 아닌 값)만 빼서 다시 대입
+                }
+            }
+            document.getElementById('engOnly').onkeyup = function(){
+                let value = this.value + "";
+                let ch = value.charAt(value.length-1);
+                const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;  // 정규표현식 : 뒤에서 배움
+                if(korean.test(value)){
+                    alert('한글은 입력할 수 없습니다.');
+                    this.value = value.substr(0, value.length-1);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    숫자만 입력: <input type="text" id="numOnly"> <br>
+    영문자만 입력: <input type="text" id="engOnly">
+</body>
+</html>

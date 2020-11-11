@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // ??의 연산 순위 : 엄청 낮다!!
+        let height = null;
+        let width = null;
+        // 괄호를 추가!
+        let area = (height ?? 100) * (width ?? 50);
+        console.log(area); // 5000
+        area = height ?? 100 * width ?? 50; // 곱셈 먼저 계산되어 0이 된다
+        console.log(area); // 0
+
+        // 안정성 관련 이슈 때문에 ??는 &&나 ||와 함께 사용하지 못합니다.
+        // let x = 1 || 2 ?? 3; // 에러
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

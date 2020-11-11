@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 숫자가 있는 행을 클릭하여 다음 행을 숨기기/보이기를 하시오!!!
+        }
+        function toggle(obj) {
+            for (i = 0; i < table.rows.length; i++) {
+                if (obj === table.rows[i]) {
+                    if (table.rows[i + 1].style.display == null || table.rows[i + 1].style.display == 'none') {
+                        table.rows[i + 1].style.display = 'table-row';
+                        table.rows[i + 1].style.backgroundColor = 'silver';
+                    } else {
+                        table.rows[i + 1].style.display = 'none';
+                        table.rows[i + 1].style.backgroundColor = 'white';
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        table {
+            width: 700px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body class="main page">
+    <table border="1" id="table">
+        <tr onclick="toggle(this);">
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr onclick="toggle(this);">
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr onclick="toggle(this);">
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr onclick="toggle(this);">
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+    </table>
+</body>
+
+</html>

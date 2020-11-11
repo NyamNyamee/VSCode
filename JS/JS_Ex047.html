@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var startTime = 30 * 60; // 분 * 60 으로 초기화
+        var timer;
+        window.onload = function () {
+            getTime();
+            setInterval(getTime, 1000);
+            
+            document.querySelector("#initBtn").onclick = function () {
+                startTime = startTime = 10; // 분 * 60 으로 초기화
+                clearInterval(timer);
+                countDown();
+            };
+            document.querySelector("#startBtn").onclick = function () {
+                timer = setInterval(countDown, 1000);
+            };
+        }
+        function getTime() {
+            let today = new Date();
+            let hh = ('0' + today.getHours()).slice(-2);
+            let mm = ('0' + today.getMinutes()).slice(-2);
+            let ss = ('0' + today.getSeconds()).slice(-2);
+            let obj = document.querySelector("#time");
+            obj.innerHTML = hh + ":" + mm + ":" + ss;
+            document.title = "현재 시간 : " + hh + "시 " + mm + "분 " + ss + "초";
+        }
+        function countDown() {
+            let mm = ('0' + Math.floor(startTime / 60)).slice(-2); // 분
+            let ss = ('0' + Math.floor(startTime % 60)).slice(-2); // 초
+            document.querySelector("#timerInner").innerHTML = mm + ":" + ss;
+            if (startTime < 0) {
+                clearInterval(timer); // 타이머 해제
+                alert('시험종료!!!!');
+            }
+            startTime--; // 1초 감소
+        }
+    </script>
+    <style>
+        #time {
+            width: 400px;
+            font-size: 80pt;
+            margin: auto;
+            border: 1px solid gray;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #timer {
+            width: 400px;
+            font-size: 80pt;
+            margin: auto;
+            border: 1px solid gray;
+            padding: 5px;
+            text-align: center;
+        }
+
+        button {
+            font-size: 25pt;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time">00:00</div>
+    <div id="timer" style="margin-top: 10px;">
+        <div id="timerInner">00:00</div>
+        <div style="text-align: center;">
+            <button id="initBtn">초기화</button>
+            <button id="startBtn">시험시작</button>
+        </div>
+    </div>
+</body>
+
+</html>

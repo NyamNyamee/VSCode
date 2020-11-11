@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    let id = Symbol();
+    console.log(typeof id);
+    console.log(id);
+    console.log(Symbol());
+    let id1 = Symbol("id");
+    let id2 = Symbol("id");
+    console.log(id1 == id2);
+    // 심볼은 문자형으로 자동 형 변환되지 않습니다.
+    console.log(id.toString());
+    console.log(Symbol().toString());
+
+    document.writeln(id.toString(), "<br>");
+    document.writeln(id.description, "<br>");
+
+    let user = { // 서드파티 코드에서 가져온 객체
+      name: "John"
+    };
+    // Symbol타입으로 객체에 접근가능하다
+    let id3 = Symbol("id");
+    user[id3] = 1;
+    document.writeln(user[id3], "<br>");
+
+    let id4 = Symbol("id");
+    user[id4] = 2;
+    document.writeln(user[id4], "<br>");
+
+    // 객체의 프로퍼티 속성 숨기기
+    let id5 = Symbol("id");
+    let user2 = {
+      name: "John",
+      age: 33,
+      [id]: 123 // "id": 123은 안됨
+    };
+    document.writeln(user2[id], "<br>")
+    // 심볼은 JSON.stringify에서 배제됩니다
+    document.writeln(user2, JSON.stringify(user2), "<br>")
+    // 심볼은 for…in 에서 배제됩니다
+    for (key in user2) {
+      document.writeln(key, ": ", user2[key], "<br>");
+    }
+
+    let clone = Object.assign({}, user2); // 심볼도 깊은복사에 포함됨
+    document.writeln(clone[id], "<br>");
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

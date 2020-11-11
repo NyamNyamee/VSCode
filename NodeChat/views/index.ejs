@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>chat_practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 99%;
+            font: 1rem Helvetica, Arial;
+            font-weight: 50
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            width: 100%;
+            position: relative;
+        }
+
+        #typeForm {
+            bottom: 0;
+        }
+
+        #whoIsInBox {
+            overflow-y: scroll;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-bottom: 1%;
+            margin-right: .5%;
+            font-size: 2rem
+        }
+
+        form button {
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+            font-size: 2rem
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-y: scroll;
+            position: relative;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(even) {
+            background: #eee;
+        }
+
+        ul {
+            font-size: 1.5rem
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        // html로딩 후
+        $(function () {
+            // 입력창에 커서를 위치시킴
+            $('#m').focus();
+
+            // socket생성
+            var socket = io();
+            // 타이핑중인 닉네임 뒤에 붙일 문자열
+            var typingNotice = ' is typing..';
+            // 글자색상 지정
+            var fontColor = 'black';
+            // 닉네임
+            var nickName = '';
+            // 타이핑 중인 닉네임들의 배열
+            var whoIsTyping = [];
+
+            // 채팅폼 전송시
+            $('#typeForm').submit(function () {
+                // 입력창에 내용이 있을 때만
+                if ($('#m').val().trim() != "") {
+                    // 입력내용을 가지고 say이벤트를 전송
+                    socket.emit('say', $('#m').val().trim());
+                    // 입력창을 비움
+                    $('#m').val('');
+                    // quitTyping 이벤트 전송
+                    socket.emit('quitTyping')
+                }
+                return false; // 폼의 기본기능을 제거
+            });
+
+            // 닉네임변경폼 전송시
+            $('#nickNameForm').submit(function () {
+                // 닉네임의 값을 가져옴
+                nickName = $('#nickName').val();
+                // 가져온 값으로 placeholder지정
+                $('#nickName').attr('placeholder', 'NickName : ' + nickName);
+                // 입력한 닉네임을 가지고 setNickName이벤트를 전송
+                socket.emit('setNickName', nickName);
+                // 입력창 비우고, 커서 위치를 입력창에 넣음
+                $('#nickName').val("");
+                $('#m').focus();
+                return false;
+            })
+
+            // 서버로부터 selfData이벤트를 받아 실행할 내용 
+            socket.on('selfData', function (obj) {
+                console.log('getting initial data from server');
+                // 닉네임을 받아 저장
+                nickName = obj.nickName;
+                // 받은 닉네임을 닉네임 입력창에 placeholder로 지정
+                $('#nickName').attr('placeholder', 'NickName : ' + nickName);
+            });
+
+            // 서버로부터 setNickName이벤트를 받아 실행할 내용
+            socket.on('setNickName', function (obj) {
+                var past = obj.past; // 이전닉네임
+                var current = obj.current; // 현재닉네임
+                var whoIsOn = obj.whoIsOn; // 현재접속자
+
+                // 채팅창에 메시지 출력
+                var msg = `====== ${past} changed nickname to ${current} ======`;
+                $('#messages').append($('<li>').text(msg));
+                // 접속자 목록을 수정하는 함수에 현재접속자를 넘김
+                editUsers(whoIsOn);
+            })
+
+            // 서버로부터 chat message이벤트를 받아 실행할 내용
+            socket.on('chat message', function (msg) {
+                // 채팅창에 메시지를 띄워줌
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            // 서버로부터 login이벤트를 받아 실행할 내용
+            socket.on('login', function (nickNameArr) {
+                // 접속자 배열의 마지막 값을 저장
+                var newbie = nickNameArr[nickNameArr.length - 1];
+                // 접속자 목록 수정
+                editUsers(nickNameArr);
+                // 새 접속자가 로그인햇음을 채팅창에 띄움
+                $('#messages').append($('<li>').text('======' + newbie + "  LOG IN======"));
+            })
+
+            // 서버로부터 typing이벤트를 받아 실행할 내용
+            socket.on('typing', function (nickNameArr) {
+                // 띄울 메시지를 저장할 변수 생성
+                var tempMsg = "";
+                // 전역변수 whoIsTyping배열에 타이핑 중인 닉네임의 배열을 받음
+                whoIsTyping = nickNameArr;
+                for (nickName of nickNameArr) {
+                    tempMsg += nickName + ', '
+                }
+                tempMsg = tempMsg.substring(0, tempMsg.length - 2); // 맨뒤의 ', '를 지움
+                // 채팅 입력창의 placeholder로 타이핑중이라는 문자열을 지정
+                $('#m').attr('placeholder', tempMsg + typingNotice)
+            });
+
+            // 서버로부터 mySaying이벤트를 받아 실행할 내용
+            socket.on('mySaying', function (msg) {
+                // 채팅창에 메시지를 띄워줌
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            // 서버로부터 endTyping이벤트를 받아 실행할 내용
+            socket.on('endTyping', function () {
+                console.log('endTyping');
+                // 타이핑중인 닉네임을 담은 배열을 초기화하고
+                whoIsTyping = [];
+                // placeholder속성을 지움
+                $('#m').attr('placeholder', "");
+            })
+
+            // 서버로부터 logout이벤트를 받아 실행할 내용
+            socket.on('logout', function (received) {
+                var nickNameArr = received.whoIsOn;
+                var disconnected = received.disconnected;
+                $('#messages').append($('<li>').text(`====== ${disconnected} has disconnected ======`));
+                editUsers(nickNameArr);
+            })
+
+            // 현재 접속자 목록 갱신 메서드
+            function editUsers(nickNameArr) {
+                // 모두 지우기
+                $('#whoIsInBox ul').children().each((index, item) => {
+                    $(item).remove();
+                });
+                // 배열에 있는 닉네임들을 새로 추가
+                for (nickName of nickNameArr) {
+                    $('#whoIsInBox ul').append($('<li>').text(nickName));
+                }
+            }
+
+            // 채팅창에 타이핑 중일 때 발생할 이벤트
+            $('#m').keyup(function (event) {
+                // 채팅입력창에 내용이 있으면서 whoIsTyping배열에 닉네임이 포함되어있지 않다면
+                if ($('#m').val().trim() != "" && !whoIsTyping.includes(nickName)) {
+                    // 서버로 typing이벤트 전송
+                    socket.emit('typing');
+                    console.log('emit typing');
+                }
+                // 채팅입력창에 내용이 없으면서 배열에 닉네임이 포함되어 있다면
+                else if ($('#m').val().trim() == "" && whoIsTyping.includes(nickName)) {
+                    // 서버로 quitTyping이벤트 전송
+                    socket.emit('quitTyping');
+                    console.log('emit quitTyping');
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <!--채팅창-->
+    <div style="height:70%">
+        <ul id="messages">
+            <li id='chatTitle' style='font-size:4rem; font-weight:bold; color:powderblue'>Socket io CHAT</li>
+        </ul>
+    </div>
+    <!--접속자명단-->
+    <div id='whoIsInBox'>
+        <h1>
+            Who Is In Now?
+        </h1>
+        <ul id='whoIsIn'>
+            <li>Test In</li>
+        </ul>
+    <!--닉네임변경폼-->
+    </div>
+    <form action="" id='nickNameForm'>
+        <input id="nickName" placeholder="Plz input a nickname first!" autocomplete="off" /><button>Send</button>
+    </form>
+    <!--채팅입력폼-->
+    <form action="" id='typeForm'>
+        <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 메서드 체이닝
+        let ladder = {
+            step: 0,
+            up() {
+                this.step++;
+            },
+            down() {
+                this.step--;
+            },
+            showStep: function () { // 사다리에서 몇 번째 단에 올라와 있는지 보여줌
+                alert(this.step);
+            }
+        };
+        ladder.up();
+        ladder.up();
+        ladder.down();
+        ladder.showStep(); // 1
+
+
+        let ladder2 = {
+            step: 0,
+            up() {
+                this.step++;
+                return this;
+            },
+            down() {
+                this.step--;
+                return this;
+            },
+            showStep() {
+                alert(this.step);
+                return this;
+            }
+        }
+        ladder2.up().up().up().down().showStep(); // 2
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

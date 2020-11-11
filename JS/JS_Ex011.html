@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // 주민번호 검사 프로그램 작성
+        window.onload = function () {
+            // 실행시 커서를 j1에 위치시키기
+            document.getElementById('j1').focus();
+            document.getElementById('checkBtn').onclick = function () {
+                let j1 = document.getElementById('j1');
+                let j2 = document.getElementById('j2');
+                if (j1.value.trim().length != 6 || isNaN(j1.value)) {
+                    alert('앞자리는 숫자로 6자이어야 합니다.');
+                    j1.value = "";
+                    j1.focus();
+                    return;
+                }
+                if (j2.value.trim().length != 7 || isNaN(j2.value)) {
+                    alert('뒷자리는 숫자로 7자이어야 합니다.');
+                    j2.value = "";
+                    j2.focus();
+                    return;
+                }
+                // 계산하기
+                let jumin = j1.value + "" + j2.value;
+                console.log('입력주민번호 : ' + jumin);
+                let sum = 0;
+                for (var i = 0; i < jumin.length - 1; i++) {
+                    sum += jumin.charAt(i) * (i % 8 + 2);
+                    console.log(jumin.charAt(i), (i % 8 + 2), jumin.charAt(i) * (i % 8 + 2), sum);
+                }
+                sum = (11 - (sum % 11)) % 10;
+                console.log(sum, jumin.charAt(12));
+                if (sum == jumin.charAt(12)) {
+                    alert('맞는 주민번호');
+                } else {
+                    alert('틀린 주민번호');
+                }
+            }
+        }
+        // j1에 6자리 입력되면 자동으로 다음으로 넘어가기
+        // j2에 7자리 입력되면 자동으로 다음으로 넘어가기
+        function nextObj(cObj, length, nObj) {
+            var currentObj = document.getElementById(cObj);
+            var nextObj = document.getElementById(nObj);
+            if (currentObj.value.length == length) {
+                nextObj.focus();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    주민번호 : <input type="text" size="8" maxlength="6" id="j1" onkeyup="nextObj('j1',6,'j2');"> -
+    <input type="password" size="8" maxlength="7" id="j2" onkeyup="nextObj('j2',7,'checkBtn');">
+    <button id="checkBtn">주민번호유효성 검사하기</button>
+</body>
+
+</html>

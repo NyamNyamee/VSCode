@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        fn2 = function(x){ // 변수에 대입이 가능하다.
+            console.log(x*x);
+        }
+        fn2(4);
+        alert(typeof(fn2));
+        alert(fn2);
+        alert(alert); // 내장함수 alert의 소스를 볼 수 없음
+        alert = function(x){
+            console.log(x);
+        }; // alert에 새로운 함수를 재정의하여 덮어씌우기 가능(오버라이딩)
+        alert('나는 어떻게 될까요?');
+        alert(alert);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

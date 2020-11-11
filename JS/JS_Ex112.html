@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            padding: 5px;
+            border: 1px solid gray;
+            color: white;
+            background: silver;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            box.onmouseover = function (event) {
+                this.style.background = 'skyblue';
+            }
+            box.onmouseout = function (event) {
+                this.style.background = 'silver';
+            }
+            // 위의 mouseover, out과 똑같지만 더 우선순위가 높음
+            box.onmouseenter = function (event) {
+                this.style.background = 'blue';
+            }
+            box.onmouseleave = function (event) {
+                this.style.background = 'black';
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box">마우스 포인터를 넣어보세요</div>
+</body>
+
+</html>

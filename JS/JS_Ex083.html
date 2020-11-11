@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            /*
+            // 동작하지 않습니다!
+            document.body.style.margin = 20;
+            alert(document.body.style.margin); // '' (값이 제대로 할당되지 않았기 때문에 빈 문자열이 출력됩니다.)
+
+            // CSS 단위(px)를 추가해봅시다. 제대로 동작하네요!
+            document.body.style.margin = '20px';
+            alert(document.body.style.margin); // 20px
+
+            alert(document.body.style.marginTop); // 20px
+            alert(document.body.style.marginLeft); // 20px
+            */
+            alert(document.body.style.color); // 빈 문자열
+            alert(document.body.style.marginTop); // 빈 문자열
+
+            
+        }
+    </script>
+    <style>
+        body {
+            color: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    dd
+</body>
+
+</html>

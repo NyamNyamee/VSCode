@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //
+        let arr = ["a", "b"];
+        arr.push(function ()  // 배열에 함수 추가
+        {
+            alert(this);
+        })
+        arr[2](); // 배열에 함수가 추가되고 함수를 호출하여 arr이 출력됨
+
+        // 입력한 숫자의 합 구하기
+        function sumInput() {
+            let arr = [];
+            while (true) {
+                let a = prompt('숫자입력');
+                if (a == null || isNaN(a)) break;
+                arr.push(a);
+            }
+            let sum = 0;
+            for (i of arr) {
+                sum += +i;
+            }
+            return sum;
+        }
+        document.writeln(sumInput());
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

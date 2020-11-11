@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 버블링과 캡처링
+    </script>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid blue;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="alert('div에 할당한 핸들러!')">
+        <em><code>EM</code>을 클릭했는데도 <code>DIV</code>에 할당한 핸들러가 동작합니다.</em>
+    </div>
+
+    <form onclick="alert('form')">FORM
+        <div onclick="alert('div')">DIV
+            <p onclick="alert('p')">P</p>
+        </div>
+    </form>
+
+    <div onclick="alert('버블링이 안됨');">
+        <button onclick="event.stopPropagation()">버블링 그만하기.</button>
+    </div>
+</body>
+
+</html>

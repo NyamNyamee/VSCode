@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <table id="table">
+        <tr>
+            <td>일</td>
+            <td>이</td>
+        </tr>
+        <tr>
+            <td>삼</td>
+            <td>사</td>
+        </tr>
+        <tr>
+            <td>오</td>
+            <td>육</td>
+        </tr>
+    </table>
+
+    <table id="table1">
+        <tr>
+            <td>일</td>
+            <td>이</td>
+        </tr>
+        <tr>
+            <td>삼</td>
+            <td>사</td>
+        </tr>
+    </table>
+
+    <script>
+        // '이'가 적힌 td를 가져옴(첫 번째 줄, 두 번째 칸)
+        let td = table.rows[0].cells[1]; // id명.행.열
+        td.style.backgroundColor = "red"; // 스타일.속성="값"
+
+        let td2 = table1.rows[1].cells[0];
+        td2.style.backgroundColor = "green";
+    </script>
+</body>
+
+</html>

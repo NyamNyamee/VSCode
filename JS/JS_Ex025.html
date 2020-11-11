@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS_Ex021.js"></script>
+    <script>
+        // 화살표 함수 let func = (파라미터) => 함수정의;
+        let sum = (a, b) => a + b;
+        let max = (a, b) => a > b ? a : b;
+        let error = msg => alert(msg); // 파라미터가 하나일 때에는 괄호 생략가능
+        let error2 = () => alert('hoho'); // 파라미터가 없어도 됨
+        document.writeln(sum(10, 30));
+        document.writeln(max(10, 20));
+        error('haha');
+        error2();
+
+        function ask(question, yes, no) {
+            if (confirm(question)) yes()
+            else no();
+        }
+        ask('동의?', () => alert('동의완료'), () => alert('비동의'));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

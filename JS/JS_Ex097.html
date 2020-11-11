@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 이벤트 위임let selectedTd;
+        window.onload = function () {
+            new Menu(menu);
+        }
+
+        class Menu {
+            constructor(elem) {
+                this._elem = elem;
+                elem.onclick = this.onClick.bind(this); // 클릭하면 onClick함수 호출
+            }
+
+            save() {
+                alert('저장하기');
+            }
+
+            load() {
+                alert('불러오기');
+            }
+
+            search() {
+                alert('검색하기');
+            }
+
+            delete() {
+                alert('삭제하기');
+            }
+
+            haha() {
+                alert('haha');
+            }
+
+            onClick(event) {
+                let action = event.target.dataset.action; // 버튼태그의 save,load,search중 하나가 action에 저장됨
+                if (action) {
+                    this[action](); // 메서드 호출
+                }
+            };
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <button data-action="save">저장하기</button>
+        <button data-action="load">불러오기</button>
+        <button data-action="search">검색하기</button>
+        <button data-action="delete">삭제하기</button>
+        <span data-action="haha">d</span>
+    </div>
+</body>
+
+</html>

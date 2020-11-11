@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+        window.onload = function () {
+            for (let i = 1; i <= 12; i++) {
+                let option = new Option(i + "월", i, true, false); // (innerHTML, value, selected속성생성, selected속성값)
+                sel.append(option);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="form">
+        <select name="sel" id="sel"></select>
+    </form>
+</body>
+
+</html>

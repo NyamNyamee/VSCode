@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td select,
+        td input {
+            width: 150px;
+        }
+
+        #diagram td {
+            vertical-align: bottom;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #diagram div {
+            margin: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    예금 이자 계산기
+    <form name="calculator">
+        <table border="1">
+            <tr>
+                <td>예치금액</td>
+                <td>
+                    <input name="money" type="number" value="10000" required>
+                </td>
+            </tr>
+            <tr>
+                <td>예치기간</td>
+                <td>
+                    <select name="months">
+                        <option value="3">3 (최단 예치기간)</option>
+                        <option value="6">6 (반년)</option>
+                        <option value="12" selected>12 (1년)</option>
+                        <option value="18">18 (1.5년)</option>
+                        <option value="24">24 (2년)</option>
+                        <option value="30">30 (2.5년)</option>
+                        <option value="36">36 (3년)</option>
+                        <option value="60">60 (5년)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>연이자율</td>
+                <td>
+                    <input name="interest" type="number" value="5" required>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <table id="diagram" border="1">
+        <tr>
+            <th>원금</th>
+            <th>만기지급금액</th>
+        </tr>
+        <tr>
+            <th id="money-before"></th>
+            <th id="money-after"></th>
+        </tr>
+        <td>
+            <div style="background: red;width:40px;height:100px"></div>
+        </td>
+        <td>
+            <div style="background: green;width:40px;height:100px" id="height-after"></div>
+        </td>
+    </table>
+
+    <input type="button" onclick="showResult()" value="showResult">
+
+    <script>
+
+        let initial = calculator.money.value;
+        document.getElementById('money-before').innerHTML = initial;
+        calculator.money.oninput = function () {
+            initial = this.value;
+            // alert(initial);
+            document.getElementById('money-before').innerHTML = initial;
+        }
+
+        let months = calculator.months.value;
+        calculator.months.onchange = function () {
+            months = this.value;
+        }
+
+        let interest = calculator.interest.value;
+        calculator.interest.oninput = function () {
+            interest = this.value;
+        }
+
+        let years = Math.round(months / 12);
+        let result = Math.round(initial * (1 + interest * years));
+
+        function showResult() {
+            document.getElementById('money-after').innerHTML = result;
+        }
+
+    </script>
+</body>
+
+</html>

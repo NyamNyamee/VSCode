@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            let rows = Array.from(table.tBodies[0].rows); // 테이블의 모든 행을 배열로 생성
+            // alert(rows);
+            // alert(rows.length);
+            for (let i = 0; i < rows.length; i++) { // 행만큼 반복
+                for (let j = 0; j < 3; j++) { // 열만큼 반복
+                    if (+rows[i].cells[j].innerHTML.startsWith('0')) { // 내용이 0으로 시작하면(숫자라면)
+                        rows[i].onclick = function () { // 그 행을 클릭했을 때
+                            rows[i + 1].classList.toggle('nan'); // 다음 행의 클래스 속성을 nan으로 설정하는 토글
+                        }
+                    }
+                }
+            }
+
+            /* 실패코드
+            // 숫자가 있는 행을 클릭하여 다음 행을 숨기고 보이도록 하시오
+            let array = document.querySelectorAll('td');
+            for (let arr of array) {
+                if (arr.innerHTML[0] >= '0' && arr.innerHTML[0] <= '9') {
+                    arr.classList.add('num');
+                }
+            }
+            for (let arr of array) {
+                if (arr.innerHTML.length > 5) {
+                    arr.classList.add('nan');
+                }
+            }
+            // alert(document.querySelectorAll('td.num')[6].innerHTML);
+            // alert(document.querySelectorAll('td.nan')[7].innerHTML);
+
+            let nums = document.querySelectorAll('.num');
+            let nans = document.querySelectorAll('.nan');
+            for (let num of nums) {
+                num.onclick = function () {
+                    for (let nan of nans) {
+                        nan.classList.toggle('nan');
+                    }
+                }
+            }
+            */
+        }
+    </script>
+    <style>
+        table {
+            margin: auto;
+            border: 1px solid gray;
+            width: 400px;
+        }
+
+        .nan {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table" border="1">
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+        </tr>
+        <tr>
+            <td>항목 001</td>
+            <td>항목 002</td>
+            <td>항목 003</td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 스타일이 적용되기 전 값을 출력함
+            alert(document.body.style.color); // 빈 문자열
+            alert(document.body.style.marginTop); // 빈 문자열
+
+            // getComputedStyle(element, [pseudo]) 메서드 사용 - 요소에 스타일이 적용되고 난 후의 값을 얻어옴
+            let computedStyle = getComputedStyle(document.body);
+            alert(computedStyle.marginTop); // 5px
+            alert(computedStyle.color); // rgb(255, 0, 0)
+        }
+    </script>
+    <style>
+        body {
+            color: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    dd
+</body>
+
+</html>

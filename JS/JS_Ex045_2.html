@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        // Date 객체와 날짜
+        let today = new Date();
+        document.writeln(today, "<br>");
+        document.writeln(today.toTimeString(), "<br>");
+        document.writeln(today.toLocaleDateString(), "<br>");
+        document.writeln(today.toLocaleTimeString(), "<br>");
+        document.writeln(today.toLocaleString(), "<br>");
+        */
+        function getDate(){
+            let year = document.getElementById("year").value;
+            let month =  document.getElementById("month").value;
+            // alert(year + " " + month);
+            document.getElementById("dates").innerHTML = "<td>" + year + "년" + month + "월</td>";
+        }
+
+    </script>
+    <style>
+        table {
+            border: 5px solid pink;
+            width: 500px;
+            margin: auto;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        select {
+            font-size: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th colspan="7">
+                <select name="year" id="year" onchange="getDate()">
+                    <script>
+                        let today = new Date();
+                        for (let i = today.getFullYear() - 50; i <= today.getFullYear(); i++) {
+                            document.write("<option value='" + i + "'>" + i + "년</option>");
+                        }
+                    </script>
+                </select>
+                <select name="month" id="month" onchange="getDate()">
+                    <script>
+                        for (let i = 1; i <= 12; i++) {
+                            document.write("<option value='" + i + "'>" + i + "월</option>");
+                        }
+                    </script>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+    </table>
+</body>
+
+</html>

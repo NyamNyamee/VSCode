@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // querySelectorAll
+            // elem.querySelectorAll(css)은 다재다능한 요소 검색 메서드입니다. 
+            let elements = document.querySelectorAll('ul > li:last-child');
+            let msg = "";
+            for (let elem of elements) {
+                msg += elem.innerHTML + "<br>";
+                // alert(elem.innerHTML); // "1-2", "2-2"
+            }
+            result.innerHTML = msg;
+            // querySelector
+            // elem.querySelector(css)는 주어진 CSS 선택자에 대응하는 요소 중 첫 번째 요소를 반환합니다.
+            let elem2 = document.querySelector('ul > li:last-child');
+            elem2.style.color = 'red';
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>1-1</li>
+        <li>1-2</li>
+    </ul>
+    <ul>
+        <li>2-1</li>
+        <li>2-2</li>
+    </ul>
+    <hr>
+    <div id="result"></div>
+</body>
+
+</html>

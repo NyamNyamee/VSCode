@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let count = 1800;
+        window.onload = function () {
+            getTime();
+            setInterval(getTime, 1000); // getTime을 1초마다 반복수행
+
+            document.getElementById("#start").onclick() = start;
+            document.getElementById("#reset").onclick() = reset;
+
+        }
+        function getTime() {
+            let today = new Date();
+            let hh = ('0' + today.getHours()).slice(-2);
+            let mm = ('0' + today.getMinutes()).slice(-2);
+            let ss = ('0' + today.getSeconds()).slice(-2);
+            let obj = document.querySelector("#time");
+            obj.innerHTML = hh + ":" + mm + ":" + ss;
+            document.title = "현재시간 " + hh + ":" + mm + ":" + ss;
+        }
+
+        function start() {
+            count--;
+            let obj = document.querySelector("#remain");
+            obj.innerHTML = count;
+            setInterval(start, 1000);
+            if (count <= 0) clearInterval(start);
+        }
+
+        function reset() {
+            
+        }
+    </script>
+    <style>
+        .time {
+            width: 300px;
+            color: rgba(0, 89, 255, 0.781);
+            border: 2px solid pink;
+            margin: auto;
+            text-align: center;
+            font-size: 30pt;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time" class="time"></div>
+    <div id="timer" class="time" style="margin-top: 5px;">
+        <div id="remain">30:00</div>
+        <div>
+            <button id="start" onclick="start()">시험시작</button>
+            <button id="reset" onclick="reset();">초기화</button>
+        </div>
+    </div>
+</body>
+
+</html>

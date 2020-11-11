@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        .menu li {
+            display: inline-block;
+            margin: 0;
+        }
+
+        .menu>li a {
+            display: inline-block;
+            margin: 0 2px;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            font: 14px/100% sans-serif;
+            padding: .5em 2em .55em;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+            border-radius: .5em;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+            color: #d9eef7;
+            border: solid 1px #0076a3;
+            background: #0095cd;
+        }
+
+        .menu>li:hover a {
+            text-decoration: none;
+            background: #007ead;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 여기에 코드를 넣어라!!!!
+            // 이벤트 위임
+            menu.onclick = function (event) {
+                if (event.target.tagName != 'A') return; // A태그가 아니면 종료
+                let href = event.target.getAttribute('href'); // href속성값 읽기
+                alert(href); // 경고창 띄우기
+                return false; // 기본 이벤트 중지
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <ul id="menu" class="menu">
+        <li><a href="/html">HTML</a></li>
+        <li><a href="/javascript">JavaScript</a></li>
+        <li><a href="/css">CSS</a></li>
+    </ul>
+
+    <input value="focus가 동작합니다," onfocus="this.value=''">
+    <input onmousedown="return false" onfocus="this.value=''" value="클릭해 주세요.">
+
+    <br>
+
+    <button>마우스 오른쪽 버튼을 클릭하면 컨텍스트 메뉴가 뜹니다.</button>
+
+    <button oncontextmenu="alert('우클릭 사용금지'); return false">
+        여기서 마우스 오른쪽 버튼을 클릭해보세요.
+    </button>
+</body>
+
+</html>

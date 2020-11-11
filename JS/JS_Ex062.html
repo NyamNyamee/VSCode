@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 요소에 속성 추가
+            document.body.myData = {
+                browser: 'Chrome',
+                version: 3.5
+            };
+            alert(document.body.myData.version);
+            // 요소에 메서드 추가
+            document.body.viewData = function () {
+                console.log(this.myData.browser);
+                console.log(this.myData.version);
+                console.log(this.tagName);
+            }
+            document.body.viewData(); // 메서드 호출
+
+            // 모든 요소에 대해 sayHi라는 메서드 추가
+            Element.prototype.sayHi = function () {
+                alert(`Hello, I'm ${this.tagName} tag`);
+            };
+            document.documentElement.sayHi();
+            document.body.sayHi();
+
+            /*
+            // 표준 속성 id
+            alert(document.body.id); // test
+            // 비표준 속성 something은 프로퍼티로 전환되지 않습니다.
+            alert(document.body.something); // undefined
+
+            alert(input.type); // text
+            alert(div.type); // type은 div의 표준 속성이 아니므로 DOM 프로퍼티가 생성되지 않아 undefined가 출력됩니다.
+            */
+
+            // 비표준 속성에 접근방법
+            console.log(document.body.hasAttribute('something')); // 해당 속성이 있는지 판단
+            console.log(document.body.getAttribute('something')); // 해당 속성의 값
+            document.body.setAttribute('something', 'hahahaha'); // 속성 추가/수정
+            console.log(document.body.getAttribute('something'));
+            document.body.removeAttribute('something'); // 속성 삭제
+            console.log(document.body.getAttribute('something'));
+        }
+    </script>
+</head>
+
+<body id="test" something="non-standard">
+    <input id="input" type="text">
+    <div id="div" type="text"></div>
+</body>
+
+</html>

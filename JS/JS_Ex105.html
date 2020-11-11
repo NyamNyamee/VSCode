@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+            // 여기에 코드를 넣어라!!!!
+            // 버튼에 오른쪽 버튼 클릭 적용
+            elem.oncontextmenu = function (event) {
+                alert("버튼1 컨텍스트 메뉴");
+                event.preventDefault();
+                // 이놈을 쓰지 않으면 이벤트 버블링이 생긴다.
+                event.stopPropagation(); // 이벤트 버블링 취소
+            };
+            // 문서에 오른쪽 버튼 클릭  적용
+            document.oncontextmenu = function (event) {
+                event.preventDefault();
+                alert("문서 컨텍스트 메뉴");
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <p>문서 레벨 컨텍스트 메뉴</p>
+    <button id="elem">버튼1 레벨 컨텍스트 메뉴</button>
+</body>
+
+</html>

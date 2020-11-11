@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        body {
+            height: 2000px;
+            /* make body scrollable, the tooltip should work after the scroll */
+        }
+
+        .tooltip {
+            position: fixed;
+            padding: 10px 20px;
+            border: 1px solid #b3c9ce;
+            border-radius: 4px;
+            text-align: center;
+            font: italic 14px/1.3 sans-serif;
+            color: #333;
+            background: #fff;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+        }
+    </style>
+    <script>
+        let tooltipElem; // div태그 생성
+        window.onload = function () {
+            document.onmouseover = function (e) {
+                let tooltip = e.target.dataset.tooltip;
+                if (!tooltip) return;
+                // alert(tooltip);
+
+                tooltipElem = document.createElement('div');
+                tooltipElem.classList.add('tooltip'); // 클래스속성 추가
+                tooltipElem.innerHTML = tooltip; // 내용 부여
+                document.body.append(tooltipElem); // 바디에 추가
+
+                // 타겟의 위치(좌표), 크기를 구함
+                let coords = e.target.getBoundingClientRect();
+                console.log(coords);
+
+                // 좌측여백 지정
+                let left = coords.left + (e.target.offsetWidth - tooltipElem.offsetWidth) / 2;
+                if (left < 0) left = 0; // 좌측에 여백이 적으면
+                // 상단여백 지정
+                let top = coords.top - tooltipElem.offsetHeight - 5;
+                if (top < 0) { // 상단에 여백이 적으면
+                    top = coords.top + e.target.offsetHeight + 5;
+                }
+
+                tooltipElem.style.left = left + 'px';
+                tooltipElem.style.top = top + 'px';
+            }
+
+            document.onmouseout = function (e) {
+                if (tooltipElem) { // tooltipElem이 존재한다면
+                    tooltipElem.remove(); // 제거
+                }
+            };
+        }
+    </script>
+</head>
+
+<body>
+    LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa
+    LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa <br>
+    <button data-tooltip="the tooltip is longer than the element">Short button</button>
+    <button data-tooltip="HTML<br>tooltip">One more button</button>
+</body>
+
+</html>

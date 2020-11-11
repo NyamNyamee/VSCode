@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+<body>
+    <script>
+        // <body>의 부모 노드는 <html>입니다
+        alert(document.body.parentNode === document.documentElement); // true
+        // <head>의 다음 형제 노드는 <body>입니다.
+        alert(document.head.nextSibling.nextSibling); // HTMLBodyElement
+        // <body>의 이전 형제 노드는 <head>입니다.
+        alert(document.body.previousSibling.previousSibling); // HTMLHeadElement        
+    </script>
+</body>
+</html>

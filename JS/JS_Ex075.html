@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            alert(table); // the table, as it should be
+            table.remove(); // table 제거. 하지만 제거해도 aaa는 제거되지 않는데, tr이나 th, td 안에 들어간 제대로된 테이블 내용이 아니기 때문이다
+        }
+    </script>
+</head>
+
+<body>
+    <div id="elem1"></div>
+    <div id="elem2"></div>
+    <div id="elem3"></div>
+    <div id="elem4"></div>
+    <script>
+        let text = '<b>text</b>';
+        elem1.append(document.createTextNode(text));
+        elem2.innerHTML = text; // 이것만 이스케이프되지 않는다. 태그가 먹는다.
+        elem3.textContent = text;
+        elem4.innerText = text;
+    </script>
+
+    <ol id="elem">
+        <li>Hello</li>
+        <li>World</li>
+    </ol>
+
+    <script>
+        function clear(elem) {
+            // 아래와 같이 자식 노드를 삭제하면 않된다. 왜? 인덱스가 변하기 때문이다.
+            // 꼭 for를 이용하여 지우려면 뒤에서부터 지워라.
+            // for (let i=0; i < elem.childNodes.length; i++) {
+            //      elem.childNodes[i].remove(); 
+            // }
+            // 이렇게 하면 지원진다.
+            // while (elem.firstChild) { // 첫번째 자식이 없을때까지
+            //     elem.firstChild.remove(); // 첫번째ㅐ 자식을 지워라
+            // } 
+            // 더 쉬운 방법은 뭘까요?
+            elem.innerHTML = "";
+        }
+        function append(elem) {
+            for (let i = 0; i < 3; i++) {
+                let li = document.createElement("li");
+                li.innerText = i + "번째 ㅎㅎㅎ"
+                elem.append(li);
+            }
+        }
+        function append2(elem) {
+            for (let i = 0; i < 3; i++) {
+                elem.innerHTML += "<li>" + i + "번째 ㅋㅋㅋ</li>"
+            }
+        }
+        clear(elem); // clears the list
+        append(elem);
+        append2(elem);
+    </script>
+
+
+    <table id="table">
+        aaa
+        <tr>
+            <td>Test</td>
+        </tr>
+    </table>
+</body>
+
+</html>

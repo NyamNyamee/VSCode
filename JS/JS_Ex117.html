@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <form id="form" action="/">
+        <input type="text" name="login"> <br>
+        <textarea name="content">나는 내용입니다.</textarea> <br>
+        <label>남자 <input type="radio" name="gender" value="M" checked></label>
+        <label>여자 <input type="radio" name="gender" value="F"></label> <br>
+        <label>술 <input type="checkbox" name="hobby" value="술"></label>
+        <label>잠 <input type="checkbox" name="hobby" value="잠"></label>
+        <label>춤 <input type="checkbox" name="hobby" value="춤"></label> <br>
+        <select name="select" id="select">
+            <option value="고기">고기s</option>
+            <option value="채소">채소s</option>
+            <option value="생선">생선s</option>
+        </select>
+        <hr>
+        <button onclick="getValue()">값얻기 1</button> <!--form에 submit이 됨-->
+        <input type="button" onclick="getValue()" value="값얻기 2"></button> <!--submit과 관련없는 버튼-->
+    </form>
+
+    <script>
+        // 폼 요소 탐색 
+        let login = form.login; // input
+        // 요소로 다시 폼 탐색 (역참조)
+        // alert(login.form + "\n" + login.form.id);  // form
+
+        function getValue() {
+            login.value = '나는 로그인';
+
+            form.content.value += '내용추가'; // textarea의 값은 innerHTML이지만 value로 가져와야 한다
+            
+            alert('radio: ' + form.gender.value);
+
+            alert('checkbox: ' + form.hobby.value); // name속성이 모두 같아서 아무 value도 찾지 못함
+            alert('checkbox[0]: ' + form.hobby[0].value); // 선택한 것에 관계없이 1번째 값을 가져옴
+            let hobby = '';
+            for(let i = 0; i < form.hobby.length; i++){
+                if(form.hobby[i].checked){
+                    hobby += form.hobby[i].value + " ";
+                }
+            }
+            alert(hobby);
+
+            alert('select: ' + form.select.value);
+        }
+    </script>
+</body>
+
+</html>

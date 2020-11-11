@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <form id="form" action="/">
+        <select id="select" onchange="alert(this.value + ' ' + this.selectedIndex);">
+            <option value="apple">Apple</option>
+            <option value="pear">Pear</option>
+            <option value="banana">Banana</option>
+        </select>
+        <input type="button" onclick="getValue()" value="값얻기">
+        <hr>
+        <select id="select2" multiple>
+            <option value="blues">Blues</option>
+            <option value="rock">Rock</option>
+            <option value="classic">Classic</option>
+        </select>
+        <input type="button" onclick="getValue2()" value="값얻기2">
+    </form>
+
+    <script>
+        function getValue() {
+            // 3개의 요소가 있다.
+            select.options[2].selected = true; // 3번째 옵션이 선택되게 지정
+            let optionCount = select.options.length; // 옵션의 개수
+            let value = select.value; // 선택한 옵션의 값
+            let index = select.selectedIndex; // 선택한 옵션의 인덱스
+            alert(optionCount + "\n" + value + "\n" + index)
+        }
+
+        function getValue2() {
+            // 방법1. 옵션 전체를 배열로 만들어 그 중 선택된 놈들만 다시 배열로 만듦
+            let selected = Array.from(select2.options)
+                .filter(option => option.selected)
+                .map(option => option.value);
+            alert(selected); // blues,rock
+
+            // 방법2. 옵션 전체를 배열로 만들어 반복을 통해 그 중 선택된 놈들에 대해 작업
+            let options = select2.options; // select2의 옵션요소들 전부 선택
+            for(option of options){ // 옵션 반복
+                if(option.selected) alert(option.value); // 옵션이 선택되어있다면 그 값을 띄움
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // node.append(노드나 문자열) – 노드나 문자열을 node 끝에 삽입합니다.
+            // node.prepend(노드나 문자열) – 노드나 문자열을 node 맨 앞에 삽입합니다.
+            // node.before(노드나 문자열) –- 노드나 문자열을 node 이전에 삽입합니다.
+            // node.after(노드나 문자열) –- 노드나 문자열을 node 다음에 삽입합니다.
+            // node.replaceWith(노드나 문자열) –- node를 새로운 노드나 문자열로 대체합니다.
+            ol.before('before'); // <ol> 앞에 문자열 'before'를 삽입함
+            ol.after('after'); // <ol> 뒤에 문자열 'after를 삽입함
+            let liFirst = document.createElement('li');
+            liFirst.innerHTML = 'prepend';
+            ol.prepend(liFirst); // <ol>의 첫 항목으로 liFirst를 삽입함
+            let liLast = document.createElement('li');
+            liLast.innerHTML = 'append';
+            ol.append(liLast); // <ol>의 마지막 항목으로 liLast를 삽입함
+
+            div.before('<p>안녕하세요</p>', document.createElement('hr'));
+        }
+    </script>
+    <style>
+        .alert {
+            padding: 15px;
+            border: 1px solid #6cec9d;
+            border-radius: 4px;
+            color: #58aa59;
+            background-color: #dcf8d3;
+        }
+    </style>
+</head>
+
+<body>
+    <ol id="ol">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+    <div id="div"></div>
+</body>
+
+</html>

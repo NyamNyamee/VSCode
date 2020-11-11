@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // DocumentFragment는 특별한 DOM 노드 타입으로,
+            // 여러 노드로 구성된 그룹을 감싸 다른 곳으로 전달하게 해주는 래퍼(wrapper)처럼 동작합니다.
+            ul.append(getListContent()); // ul태그 자식으로 fragment묶음을 추가
+            ul.append(...getListContent2()); // 배열로 추가시 앞에 ...추가
+        }
+
+        function getListContent() {
+            let fragment = new DocumentFragment(); // 다수의 태그 묶음
+
+            for (let i = 1; i <= 3; i++) {
+                let li = document.createElement('li'); // li태그 생성
+                li.append(i + "fragment"); // li에 내용(1, 2, 3)삽입
+                fragment.append(li); // 그 li태그를 fragment에 추가
+            }
+
+            return fragment;
+        }
+
+        function getListContent2() {
+            let result = []; // 배열
+
+            for (let i = 1; i <= 3; i++) {
+                let li = document.createElement('li'); // 태그 생성
+                li.append(i + "array"); // 태그에 내용 추가
+                result.push(li); // 배열에 li태그 추가
+            }
+
+            return result;
+        }
+
+
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <ul id="ul"></ul>
+</body>
+
+</html>

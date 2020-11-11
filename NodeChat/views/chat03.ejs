@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <select>
+        <option value="Room1">Room1</option>
+        <option value="Room2">Room2</option>
+    </select>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(() => {
+            const name = prompt('Whats your name'); // 접속시 이름을 물어봐 저장
+            const socket = io(); // 소켓 생성
+            let room = ['room1', 'room2']; // 채팅방 이름을 담은 배열
+            let num = 0;
+
+            socket.emit('joinRoom', num, name); // 채팅방에 접속했음을 서버에 알림
+
+            $('select').change(() => { // 셀렉트태그의 값이 변경되면(채팅방을 변경하면)
+                socket.emit('leaveRoom', num, name); // 채팅방을 떠낫음을 서버에 알림
+                num = ++num % 2; // 채팅방이름을 변경
+                socket.emit('joinRoom', num, name); // 다음 채팅방에 들어갔음을 서버에 알림
+            });
+
+            // 폼이 전송될때 방번호,이름,메시지를 chat message라는 이벤트로 서버에 알림
+            $('form').submit(() => {
+                socket.emit('chat message', num, name, $('#m').val());
+                $('#m').val('');
+                $('#m').focus();
+                return false;
+            });
+
+            // 서버로부터 leaveRoom이벤트가 날아오면 채팅창에 메시지 출력
+            socket.on('leaveRoom', (num, name) => {
+                $('#messages').append($('<li>').text(name + ' leaved ' + room[num] + ' :('));
+            });
+
+            // 서버로부터 joinRoom이벤트가 날아오면 채팅창에 메시지 출력
+            socket.on('joinRoom', (num, name) => {
+                $('#messages').append($('<li>').text(name + ' joined ' + room[num] + ' :)'));
+            });
+
+            // 서버로부터 chat message이벤트가 날아오면 채팅창에 메시지 출력
+            socket.on('chat message', (name, msg) => {
+                $('#messages').append($('<li>').text(name + '  :  ' + msg));
+                // 화면 스크롤 시키기
+                window.scrollTo(e, document.body.scrollHeight);
+            });
+        });
+    </script>
+</body>
+
+</html>

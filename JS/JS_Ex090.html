@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        body{font-size: 18pt;}
+        span{color:green;margin: 5px;}
+        #menu{cursor: pointer;}
+        #sub_menu{margin-left: 50px; display: none;}
+    </style>
+    <script>
+        window.onload = function () {
+            menu.onclick = function(){
+                if(arrow.innerHTML=="▶"){
+                    arrow.innerHTML="▼"
+                    sub_menu.style.display = 'block';
+                }else{
+                    arrow.innerHTML="▶"
+                    sub_menu.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="menu"><span id="arrow">▶</span>Sweeties (click me)!</div> 
+    <div id="sub_menu">
+       <a href="#"> Cake</a> <br>
+       <a href="#"> Donut</a> <br>
+       <a href="#"> Honey</a> <br>
+    </div> 
+</body>
+</html>

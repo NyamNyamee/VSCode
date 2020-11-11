@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 생성자 함수
+        // 생성자 함수(constructor function)와 일반 함수에 기술적인 차이는 없습니다. 다만 생성자 함수는 아래 두 관례를 따릅니다.
+
+        // 함수 이름의 첫 글자는 대문자로 시작합니다.
+        // 반드시 "new" 연산자를 붙여 실행합니다.
+
+        function User(name, age) { // 첫 글자는 대문자
+            this.name = name;
+            this.age = age;
+            this.admin = false;
+            // return this;  (this가 암시적으로 반환됨)
+        }
+
+        // 객체 생성 : "new" 연산자를 붙여 실행
+        user1 = new User("한사람", 22);
+        document.writeln(user1, "<br>");
+        document.writeln(JSON.stringify(user1), "<br>");
+        user2 = new User("두사람", 18);
+        document.writeln(user2, "<br>");
+        document.writeln(JSON.stringify(user2), "<br>");
+
+        // new.target 프로퍼티를 사용하면 함수가 new와 함께 호출되었는지 아닌지를 알 수 있습니다.
+        function User2() {
+            alert(new.target);
+        }
+        // "new" 없이 호출함
+        User2(); // undefined
+        //"new"를 붙여 호출함
+        new User2(); // function User { ... }
+
+
+        function User3(name) {
+            if (!new.target) { // new 없이 호출해도
+                return new User3(name); // new를 붙여줍니다.
+            }
+            this.name = name;
+        }
+        let john = User3("John"); // 'new User'를 쓴 것처럼 바꿔줍니다.
+        alert(john.name); // John
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

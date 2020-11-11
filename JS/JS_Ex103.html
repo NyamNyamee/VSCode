@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        a:link {
+            color: blue;
+            text-decoration: none; /* 밑줄 없애기 */
+        }
+
+        a:hover {
+            color: aqua;
+            font-style: italic;
+        }
+
+        a:active {
+            color: burlywood;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+        }
+    </script>
+</head>
+
+<body>
+    <a href="https://www.naver.com" onclick="alert('gogo');" target="blank">이곳</a>
+    이나
+    <a href="https://www.naver.com" onclick="alert('gogo');" target="blank">이곳을</a> 클릭해주세요.
+    <br>
+    <a href="https://www.naver.com" onclick="return false;">이곳</a> <!--return false설정시 부모태그의 이벤트까지 실행되는 버블링도 막아줌-->
+    이나
+    <a href="https://www.naver.com" onclick="event.preventDefault();">이곳을</a> 클릭해도 이동하지 않습니다
+    <br>
+    <a href="javascript:alert('haha');">javascript href</a>
+    <br>
+    <a href="#" onclick="alert('onclick');">javascript onclick</a>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+
+        };
+
+        function handler() {
+            alert("...");
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <a href="https://w3.org" onclick="handler();">브라우저가 w3.org로 이동합니다.</a>
+    <hr>
+    <a href="https://w3.org" onclick="return handler();">브라우저가 w3.org로 이동하지 않습니다.</a>
+</body>
+
+</html>

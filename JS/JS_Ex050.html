@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showFile(input) {
+            let file = input.files[0];
+            let reader = new FileReader(); // 파일읽기 객체
+            reader.readAsText(file, "UTF-8"); // text로 읽어라
+            reader.onload = function () { // 읽기 성공시 함수
+                console.log(typeof reader.result);
+                let jsonObj = JSON.parse(reader.result);
+                console.log(typeof jsonObj);
+                console.log(JSON.stringify(jsonObj));
+                console.log(jsonObj[0]);
+                console.log(jsonObj.length);
+                msg = "";
+                for (let i = 0; i < jsonObj.length; i++) {
+                    msg += JSON.stringify(jsonObj[i]) + "<br>";
+                }
+                document.querySelector("#result").innerHTML = msg;
+            };
+            reader.onerror = function () { // 읽기 실패시 함수
+                document.querySelector("#box").innerText = reader.error;
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" onchange="showFile(this)" accept="*.json">
+    <div id="result"></div>
+</body>
+
+</html>

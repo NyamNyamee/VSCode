@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getDate() {
+            let year = document.getElementById("year").value;
+            let month = document.getElementById("month").value;
+            // alert(year + " " + month);
+            let date = new Date(year, month - 1, 1); // 선택한 년월의 1일 날짜 생성
+            let week = date.getDay(); // 해당 날짜의 1일에 해당하는 요일
+            let content = "<tr>";
+            for (let i = 0; i < week; i++) content += "<td>&nbsp;</td>"; // 1일의 요일 이전날짜는 공백으로
+            let m = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // 각 달의 마지막 일자
+            m[1] = year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? 29 : 28 // 2월은 윤년판단
+            let lastday = m[month - 1]; // 선택된 월의 마지막 일자
+            for (let i = 1; i <= lastday; i++) {
+                content += "<td>" + i + "</td>";
+                date = new Date(year, month - 1, i);
+                week = date.getDay();
+                console.log(i, " : ", week);
+                if (week == 6) { // 토요일이 되면 tr을 추가해서 줄바꿈
+                    console.log("~~~~~~~~~~~~~~~~~~~~~~~");
+                    content += "</tr><tr>";
+                }
+            }
+            for (let i = week; i < 6; i++) { // 나머지는 역시 공백으로 채움
+                content += "<td>&nbsp;</td>";
+            }
+            // alert(content);
+            document.getElementById("dates").innerHTML = content;
+        }
+        window.onload = function () {
+            getDate();
+        }
+    </script>
+    <style>
+        table {
+            border: 5px solid rgb(250, 111, 134);
+            width: 500px;
+            margin: auto;
+        }
+
+        th {
+            font-size: 20px;
+        }
+
+        select {
+            font-size: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th colspan="7" style="font-size: 18pt;">
+                <select id="year" onchange="getDate()">
+                    <script>
+                        // 현재년도 -50 ~ 현재연도
+                        let today = new Date();
+                        for (let i = today.getFullYear() - 50; i <= today.getFullYear(); i++) {
+                            if (i == today.getFullYear()) {
+                                document.writeln("<option value='" + i + "' selected='selected'>" + i + "</option>");
+                            } else {
+                                document.writeln("<option value='" + i + "'>" + i + "</option>");
+                            }
+                        }
+                    </script>
+                </select>
+                년도
+                <select id="month" onchange="getDate()">
+                    <script>
+                        for (let i = 1; i <= 12; i++) {
+                            if (today.getMonth() + 1 == i)
+                                document.writeln("<option value='" + i + "'  selected='selected'>" + i + "</option>");
+                            else
+                                document.writeln("<option value='" + i + "'>" + i + "</option>");
+                        }
+                    </script>
+                </select>
+                월
+            </th>
+        </tr>
+        <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+    </table>
+    <table border=1 id="dates"></table>
+</body>
+
+</html>

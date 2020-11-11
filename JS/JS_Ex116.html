@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+
+    </style>
+    <script>
+        // name속성으로 폼과 그 안에 있는 input 요소들 찾기
+        window.onload = () => {
+            // 폼 얻기
+            let myForm = document.forms.my; // <form name="my"> 요소
+            // 폼 안의 input요소 얻기
+            let elem = myForm.elements.one; // <input name="one"> 요소
+            // alert(elem.value); // 1
+
+
+            let form2 = document.forms[1]; // 2번째 폼태그를 찾음
+            let ageElems = form2.elements.age; // elements는 생략가능
+            // alert(ageElems[0].name); 
+            // alert(ageElems[0].value); 
+            // alert(document.forms[1].age[0].checked);
+
+
+            // alert(form3.elements.login); // <input name="login">
+            // let fieldset = form3.userFields;
+            // alert(fieldset); // HTMLFieldSetElement
+            // // 이름을 사용해 form과 fieldset 모두에서 input을 구할 수 있습니다.
+            // alert(fieldset.elements.login == form3.elements.login); // fieldset요소는 elements생략불가능, true        
+
+           
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <form name="my">
+        <input name="one" value="1">
+        <input name="two" value="2">
+    </form>
+
+    <form>
+        <input type="radio" name="age" value="10">
+        <input type="radio" name="age" value="20">
+    </form>
+
+    <form id="form3">
+        <fieldset name="userFields">
+            <legend>info</legend>
+            <input name="login" type="text">
+        </fieldset>
+    </form>
+
+</body>
+
+</html>

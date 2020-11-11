@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+                let div = document.createElement('div'); // div태그 생성
+                div.className = "alert"; // 클래스속성 할당
+                div.innerHTML = "<strong>안녕하세요!</strong> 중요 메시지를 확인하셨습니다."; // 내용
+                document.body.append(div); // 태그를 바디에 추가
+            }
+    </script>
+    <style>
+        .alert {
+            padding: 15px;
+            border: 1px solid #6cec9d;
+            border-radius: 4px;
+            color: #58aa59;
+            background-color: #dcf8d3;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+</html>

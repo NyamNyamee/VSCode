@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js"></script>
+    <script>
+        $(function () {
+            let regDates = document.querySelectorAll('.regDate');
+            // alert(moment(regDates[4].innerHTML).format('YY.MM.DD HH:mm:ss'));
+            for (regDate of regDates) {
+                regDate.innerHTML = moment(regDate.innerHTML).format('YY.MM.DD HH:mm:ss');
+            }
+            regDates[0].innerHTML = 'regDate';
+        });
+    </script>
+    <style>
+        #memoTable {
+            width: 600px;
+            margin: auto;
+        }
+
+        tr {
+            background-color: bisque;
+        }
+
+        th {
+            background-color: rgb(248, 95, 95);
+            border: 1px solid beige;
+        }
+
+        td {
+            border: 1px solid rgb(218, 130, 22);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 20pt;
+            background-color: white;
+            border: none;
+        }
+
+        .info {
+            padding-right: 10px;
+            text-align: right;
+            font-size: 15pt;
+            background-color: white;
+            border: none;
+        }
+
+        .idx {
+            width: 10%;
+        }
+
+        .name {
+            width: 10%;
+        }
+
+        .content {
+            width: 60%;
+        }
+
+        .regDate {
+            width: 10%;
+        }
+
+        .ip {
+            width: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="memoTable">
+        <tr>
+            <td class="title" colspan="5">
+                노잼 메모
+            </td>
+        </tr>
+        <tr>
+            <td class="info" colspan="5">
+                전체: <%= rows.length %>
+            </td>
+        </tr>
+        <tr>
+            <th class="idx">No</th>
+            <th class="name">Name</th>
+            <th class="content">Content</th>
+            <th class="regDate">regDate</th>
+            <th class="ip">ip</th>
+        </tr>
+        <% rows.forEach(function(row){ %>
+        <tr>
+            <td class="idx"><%= row.idx %></td>
+            <td class="name"><%= row.name %></td>
+            <td class="content"><%= row.content %></td>
+            <td class="regDate"><%= row.regDate %></td>
+            <td class="ip"><%= row.ip %></td>
+        </tr>
+        <% }); %>
+    </table>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

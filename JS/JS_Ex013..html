@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let firstName = null;
+        let lastName = null;
+        let nickName = "Supercoder";
+        // null이나 undefined가 아닌 첫 번째 피연산자
+        alert(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
+        alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
+
+        let height = 0;
+        alert(height || 100); // 0은 false이므로 100
+        alert(height ?? 100); // 0은 defined이므로 0
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

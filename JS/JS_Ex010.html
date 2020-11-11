@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // select값에 2000~2050년을 넣고
+        // 최초 실행시 현재 연도가 선택되어있게 해라
+        window.onload = function () {
+            let obj = document.getElementById("year");
+            let option = "";
+            let year = new Date().getFullYear(); // 현재 년도
+            // alert(year);
+            for (i = year - 50; i <= year + 50; i++) {
+                option += "<option value='" + i + "' ";
+                option += i == year ? " selected='selected'" : "";
+                option += "> " + i + " </option>"
+
+            }
+            obj.innerHTML = option;
+        }
+        // 버튼을 누르면 선택된 연도의 평년/윤년을 알려주도록 하시오!!!
+        function checkYear() {
+            let year = document.getElementById("year").value;
+            alert(year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? "윤년" : "평년");
+        }
+    </script>
+</head>
+
+<body>
+    <select id="year"></select>
+    <button onclick="checkYear()">윤년확인</button>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+        window.onload = function () {
+            // let form = document.createElement('form'); // 폼태그 생성
+            // form.action = 'https://google.com/search'; // 이동할 주소
+            // form.method = 'GET'; // 겟방식
+            // form.innerHTML = '<input name="q" value="test">'; // 파라미터 q=text를 넘기는 인풋태그를 폼안에 넣음
+            // document.body.append(form); // 만든 폼을 바디에 추가
+            // form.submit(); // 폼 전송
+        }
+
+        function post_to_url(path, params, method) { // (주소, 파라미터를 담은 객체, 전송방식)
+            method = method || "post"; // methos 파라미터가 넘어오지 않을 시 전송 방식 기본값을 POST로
+
+            var form = document.createElement("form"); // 폼태그 생성
+            form.setAttribute("method", method); // 폼의 전송방식 설정
+            form.setAttribute("action", path); // 주소 지정
+
+            //히든으로 값을 주입시킨다.
+            for (var key in params) {
+                var hiddenField = document.createElement("input"); // input태그 생성
+                hiddenField.setAttribute("type", "hidden"); // type을 히든으로
+                hiddenField.setAttribute("name", key); // 넘어온 파라미터의 키를 name속성에 지정
+                hiddenField.setAttribute("value", params[key]); // 넘어온 파라미터의 값을 value속성에 지정
+
+                form.appendChild(hiddenField); // 만든 input태그들을 form태그 안에 집어넣음
+            }
+
+            document.body.appendChild(form); // 최종 완성된 폼태그를 바디안에 집어넣음
+            form.submit(); // 폼 실행
+        }
+    </script>
+</head>
+
+<body>
+    <a href="javascript:post_to_url('www.google.com',{'p':'test'})">POST보내기</a>
+    <button onclick="post_to_url('www.google.com', {'p':'test'}, 'GET')">GET전송</button>
+    <button onclick="post_to_url('www.google.com', {})">POST전송</button>
+</body>
+
+</html>

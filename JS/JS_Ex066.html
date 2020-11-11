@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            console.log(div.getAttribute('data-widget-name'));
+            console.log(document.body.children[0].getAttribute('data-widget-name'));
+            console.log(div.dataset.widgetName);
+            console.log(div.innerHTML);
+            console.log(div.outerHTML);
+
+            // setting style for a single link
+            let link = document.querySelector('a');
+            link.style.color = 'orange';
+            
+            // 외부 링크만 색상 바꾸기
+            let outerLinks = document.querySelectorAll('li');
+            alert(outerLinks[0].a.getAttribute('href'));
+            for(link of outerLinks){
+                if(link.a['href'] == "://" && !link.a['href']  == "http://"){
+                    link.a.style.color = 'orange';
+                }
+            }
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="div" data-widget-name="menu">Choose the genre</div>
+
+    <a name="list">the list</a>
+    <ul>
+        <li><a href="http://google.com">http://google.com</a></li>
+        <li><a href="/tutorial">/tutorial.html</a></li>
+        <li><a href="local/path">local/path</a></li>
+        <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+        <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+        <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            showBtn.onclick = function () {
+                div.style.display = ''; // display라는 속성 자체를 없애기
+                div.style.color = 'red';
+            }
+            hideBtn.onclick = function () {
+                div.style.display = 'none';
+            }
+        }
+    </script>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <div id="div">im div</div>
+    <button id="showBtn">show div</button>
+    <button id="hideBtn">hide div</button>
+</body>
+
+</html>

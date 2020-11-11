@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트위임</title>
+    <style>
+    </style>
+    <script>
+        /* ‘행동’ 패턴
+          이벤트 위임은 요소에 선언적 방식으로 '행동(behavior)'을 추가할 때 사용할 수도 있습니다. 
+          이때는 특별한 속성과 클래스를 사용합니다.
+          행동 패턴은 두 부분으로 구성됩니다.
+          1. 요소의 행동을 설명하는 커스텀 속성을 요소에 추가합니다.
+          2. 문서 전체를 감지하는 핸들러가 이벤트를 추적하게 합니다. 
+             1에서 추가한 속성이 있는 요소에서 이벤트가 발생하면 작업을 수행합니다.
+        */
+        window.onload = function () {
+            // document 전체에 이벤트를 위임
+            document.addEventListener('click', function (event) {
+                if (event.target.dataset.counter != undefined) { // "data-counter" 속성이 존재할 경우
+                    event.target.value++; // 이벤트가 발생한 요소의 value를 1 증가
+                }
+            });
+
+            document.addEventListener('click', function (event) {
+                let id = event.target.dataset.toggleId;
+                if (!id) return;
+                let elem = document.getElementById(id);
+                elem.hidden = !elem.hidden;
+            });
+        }
+    </script>
+</head>
+
+<body>
+    첫 번째 카운터: <input type="button" value="1" onclick="this.value++"><br>
+    두 번째 카운터: <input type="button" value="2" data-counter><br>
+    세 번째 카운터: <input type="button" value="3" data-counter><br>
+
+    <button data-toggle-id="subscribe-mail">
+        구독 폼 보여주기
+    </button>
+    <form id="subscribe-mail" hidden>
+        메일 주소: <input type="email">
+    </form>
+</body>
+
+</html>

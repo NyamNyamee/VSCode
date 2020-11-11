@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 계산기 만들기
+        let calculator = {
+            // ... 여기에 답안 작성 ...
+            read() {
+                this.a = prompt('첫번째 값', 0) * 1;
+                this.b = prompt('두번째 값', 0) * 1;
+            },
+            sum() {
+                return this.a + this.b;
+            },
+            mul() {
+                return this.a * this.b;
+            }
+        };
+
+        calculator.read();
+        alert(calculator.a);
+        alert(calculator.b);
+        alert(calculator.sum());
+        alert(calculator.mul());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

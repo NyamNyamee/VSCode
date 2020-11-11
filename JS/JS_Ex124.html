@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+        window.onload = function () {
+            btn.onclick = function () {
+                if (confirm('go?')) form.submit(); // 이렇게도 전송이 이루어진다.
+            }
+        }
+    </script>
+</head>
+
+<body>
+    서버로 전송은 submit, image속성과 button태그로 이루어진다. <br>
+    onsubmit속성에서 false를 리턴하면 전송이 이루어지지 않는다.
+    <form action="./JS_Ex123.html" onsubmit="return confirm('really?');" id="form">
+        First: Enter in the input field <input type="text" value="text"><br>
+        Click : <input type="submit" value="전송"> <br>
+        Click : <input type="image" src="https://en.js.cx/gallery/img2-lg.jpg"> <br>
+        Click : <button>전송</button> <br>
+        Click : <input type="button" value="전송" id="btn"> <br>
+    </form>
+    <hr>
+    <form action="#"> <!--#은 같은 페이지 내에서의 책갈피-->
+        <input type="submit" value="Submit" onclick="alert('click')"> <!--submit에 onclick이벤트가 있어도 상관없다-->
+    </form>
+</body>
+
+</html>

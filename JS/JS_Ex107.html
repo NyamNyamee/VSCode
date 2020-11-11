@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        #contents {
+            border: 1px solid salmon;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            contents.addEventListener("click", function (e) {
+                let target = e.target;
+                let href = target.href;
+                // alert(href);
+                if(target.tagName != 'A') return; // a태그가 아니라면 아무것도 실행하지 않음
+                if(!confirm(href + '로 이동하시겠습니까?')){ // confirm창에서 취소를 누르면
+                   e.preventDefault();
+                   alert('취소');
+                }
+            });
+        };
+
+    </script>
+</head>
+
+<body>
+    <fieldset id="contents">
+        <legend>#content</legend>
+        링크1: <a href="https://www.naver.com">네이버</a> <br>
+        링크2: <a href="https://www.daum.net">다음</a> <br>
+        링크3: <a href="https://www.google.com">구글</a>
+    </fieldset>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 2초 후 document.write 호출
+            // 페이지 로드가 끝난 후이므로 기존 내용이 사라집니다.
+            // setTimeout(() => document.writeln('<b>모두 사라졌습니다.</b>'), 2000);
+
+            let text = '<b>text</b>';
+
+            elem1.append(document.createTextNode(text)); // 태그 안먹음
+            elem2.innerHTML = text; // 태그 먹음
+            elem3.innerText = text; // 태그 안먹음
+            elem4.textContent = text; // 태그 안먹음
+
+            function clear(elem) {
+                // 앞에서부터 제거하는 순간 인덱스가 변하기 때문에 불가능
+                // for (let i = 0; i < elem.childNodes.length; i++) {
+                //     elem.childNodes[i].remove();
+                // }
+                
+                // 가능
+                // while (elem.firstChild) { // elem의 첫번째 자식노드가 존재한다면
+                //     elem.firstChild.remove(); // 첫번째 자식을 제거하라
+                // }
+
+                // 더 쉬운 방법
+                elem.innerHTML = "";
+            }
+
+            clear(elem); // clears the list
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>일 초 후, 이 페이지의 내용은 전부 교체됩니다.</p>
+    <script>
+        document.writeln('바디 안 스크립트에서 쓰는 writeln은 추가됨');
+    </script>
+    <div id="elem1"></div>
+    <div id="elem2"></div>
+    <div id="elem3"></div>
+    <div id="elem4"></div>
+
+    <ol id="elem">
+        <li>Hello</li>
+        <li>World</li>
+    </ol>
+</body>
+
+</html>

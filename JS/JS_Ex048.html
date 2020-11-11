@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showFile(input) {
+            let file = input.files[0];
+            document.querySelector("div#result").innerHTML = `File name: ${file.name}`
+            document.querySelector("div").innerHTML += `<br>Last modified: ${file.lastModified}`
+            document.querySelector("div").innerHTML += `<br>Last modified: ${new Date(file.lastModified).toLocaleDateString()}`
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" onchange="readFile(this)">
+    <hr>
+    <div id="result"></div>
+
+    <script>
+        function readFile(input) {
+            let file = input.files[0];
+            let reader = new FileReader(); // 파일 읽기 객체 생성
+            reader.readAsText(file, "UTF-8"); // text형태로 읽기
+            reader.onload = function () { // 읽기 성공시 실행할 함수
+                document.querySelector('#result').innerText = reader.result;
+            };
+            reader.onerror = function () { // 읽기 실패시 실행할 함수
+                document.querySelector('#result').innerText = reader.error;
+            };
+        }
+    </script>
+</body>
+
+</html>

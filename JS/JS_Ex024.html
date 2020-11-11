@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS_Ex021.js"></script>
+    <script>
+        // 내부 함수
+        let age = prompt("나이를 알려주세요.", 18);
+        // 조건에 따라 함수를 선언함
+        if (age < 18) {
+            function welcome() {
+                alert("안녕꼬마야!");
+            }
+        } else {
+            function welcome() {
+                alert("안녕하세요!");
+            }
+        }
+        // 함수를 나중에 호출합니다.
+        welcome(); // 에러아님.
+
+        if (age < 18) {
+            let welcome2 = function () {
+                alert("안녕꼬마야!");
+            }
+        } else {
+            let welcome2 = function () {
+                alert("안녕하세요!");
+            }
+        }
+        welcome2(); // 에러
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

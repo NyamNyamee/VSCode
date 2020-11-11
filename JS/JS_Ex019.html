@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 함수
+        // 함수 내에서는 외부변수를 마음대로 사용 가능하다!!!
+        let userName = 'John';
+        //let message;
+        function showMessage() {
+            userName = "Bob"; // (1) 외부 변수를 수정함
+            let message = 'Hello, ' + userName;
+            document.writeln(message + "<br>");
+        }
+        //document.writeln(message + "<br>"); // 에러임!!!! 함수안에서 선언한 변수 사용 못함
+        showMessage();
+        document.writeln(userName + "<br>");
+        //document.writeln(message + "<br>");
+
+        function fn1(x, y, z){
+            document.writeln(x,y,z+"<br>");
+        }
+        fn1(1,2); // 파라미터 세개가 들어가는 함수에 두개만 넣어도 에러가 아님
+        
+        // 변수가 기본값을 가질 수 있음
+        function fn2(x, y, z=3){
+            document.writeln(x,y,z+"<br>");
+        }
+        fn2(1,2); // 파라미터 세개가 들어가는 함수에 두개만 넣어도 에러가 아님
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

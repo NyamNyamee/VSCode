@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+
+        };
+    </script>
+</head>
+
+<body>
+    <button id="elem" onclick="alert('클릭!');">자동으로 클릭 되는 버튼</button>
+    <script>
+        let event1 = new Event("click"); // 클릭 이벤트 생성
+        elem.dispatchEvent(event1); // 이벤트 실행
+    </script>
+
+    <h1 id="elem2">Hello from the script!</h1>
+    <script>
+        // 버블링이 일어나면서 document에서 이벤트가 처리됨
+        document.addEventListener("hello", function (event) { // (1)
+            alert("Hello from " + event.target.tagName); // Hello from H1
+        });
+
+        // 이벤트(hello)를 만들고 elem에서 이벤트 디스패치
+        let event2 = new Event("hello", { bubbles: true }); // (2)
+        elem2.dispatchEvent(event2);
+
+        // document에 할당된 핸들러가 동작하고 메시지가 얼럿창에 출력됩니다.
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+
+        }
+        function checkForm(obj) {
+            // alert(obj.gender.value); // gender의 값
+            /*
+            if(obj.gender.value == '' || obj.gender.value == null){
+                alert('성별 선택 필요');
+                return false;
+            }
+            */
+            // alert(obj.gender.length); // gender의 개수
+            if (!obj.gender[0].checked && !obj.gender[1].checked) {
+                alert('성별 선택해주세요');
+                obj.gender[0].checked = true;
+                return false;
+            }
+
+            // alert(obj.hobby.length); // hobby의 개수
+            isChecked = false; // 체크가 아무것도 안되어있따고 가정
+            for (let hobby of obj.hobby) {
+                if (hobby.checked) { // 하나라도 체크되어 있다면 isChecked를 true로 변경
+                    isChecked = true;
+                }
+            }
+            if (!isChecked) { // isChecked가 그대로 false라면 아무것도 체크가 안되어 있다는 의미
+                alert('취미를 하나 이상 선택해주세요');
+                obj.hobby[0].checked = true;
+                return false;
+            }
+
+            // alert(obj.marry.length);
+            // alert(obj.marry[0].value);
+            if (obj.marry.value == '' || obj.marry.value == null) {
+                alert('혼인 유무 선택하라');
+                obj.marry[1].selected = true;
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="form" onsubmit="return checkForm(this);">
+        <label> 남자
+            <input name="gender" type="radio" value="m">
+        </label>
+        <label> 여자
+            <input name="gender" type="radio" value="f">
+        </label>
+        <hr>
+        <label> 술
+            <input name="hobby" type="checkbox" value="술">
+        </label>
+        <label> 마약
+            <input name="hobby" type="checkbox" value="마약">
+        </label>
+        <hr>
+        <select name="marry" id="m">
+            <option value="" selected="selected">혼인여부선택</option>
+            <option value="미혼">미혼</option>
+            <option value="기혼">기혼</option>
+            <option value="이혼">이혼</option>
+        </select>
+        <hr>
+        <input type="submit" value="save">
+    </form>
+</body>
+
+</html>

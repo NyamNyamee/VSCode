@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            let div = document.createElement('div');
+            div.className = "alert";
+            div.innerHTML = "<strong>안녕하세요!</strong> 중요 메시지를 확인하셨습니다.";
+            document.body.append(div);
+
+            setTimeout(() => div.remove(), 1000); // 1초 뒤에 div노드 제거
+            setTimeout(() => second.after(first), 2000); // 2초 뒤에 first가 second 뒤로 이동
+
+            // elem.cloneNode(true)을 호출하면 elem의 ‘깊은’ 복제본이 만들어집니다. 속성 전부와 자손 요소 전부가 복사됩니다.
+            // elem.cloneNode(false)을 호출하면 후손 노드 복사 없이 elem만 복제됩니다.
+            let div3 = div2.cloneNode(true); // 메시지 창 복제
+            div3.querySelector('strong').innerHTML = '안녕히 가세요!'; // 복제한 태그에서 strong 태그를 선택해 그 내용 수정
+            second.after(div3); // 복제한 메시지 창을 기존 메시지 창 다음에 보여줌
+        }
+    </script>
+    <style>
+        .alert {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="first">First</div>
+    <div id="second">Second</div>
+
+    <div class="alert" id="div2">
+        <strong>안녕하세요2!</strong> 중요 메시지를 확인하셨습니다.
+    </div>
+</body>
+
+</html>

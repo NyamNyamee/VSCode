@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS_Ex021.js"></script>
+    <script>
+        // 함수를 출력하면 내용이 보인다.
+        document.writeln(fn1, "<br>");
+        document.writeln(fn2, "<br>");
+        // 내장함수를 출력하면 어떻게 될까?
+        // function alert() { [native code] }
+        document.writeln(alert, "<br>");
+        // 내장 함수의 재정의!!
+        alert = function(msg){
+            document.writeln(msg, "<br>");  
+        }
+        alert('나는 어떻게 나올까요?');
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

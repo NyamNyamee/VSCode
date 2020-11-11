@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // DOM 프로퍼티 값의 타입
+
+        }
+        function checkForm(obj) {
+            // radio버튼 검사하기
+            // alert(obj.gender.value);
+            // alert(obj.gender[0].checked);
+            // alert(obj.gender[1].checked);
+            // alert(obj.gender.length);
+            if (!obj.gender[0].checked && !obj.gender[1].checked) {
+                alert('성별은 반드시 선택하셔야 합니다.');
+                obj.gender[0].checked = true;
+                return false;
+            }
+            // ckeckbox 검사하기
+            chk = obj.hobby;
+            // alert(chk.length);
+            isChecked = true;
+            for (let c of chk) {
+                if (c.checked) {
+                    isChecked = false;
+                }
+            }
+            if (isChecked) {
+                alert('취미는 반드시 1개이상 선택하셔야 합니다.');
+                chk[0].checked = true;
+                return false;
+            }
+            // select검사하기
+            if (obj.m.value == null || obj.m.value == "") {
+                alert('결혼여부를 반드시 선택해주세요!!!');
+                obj.m[1].selected = true;
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="form" onsubmit="return checkForm(this);">
+        성별
+        <label>남자 <input type="radio" value="남" name="gender"> </label>
+        <label>여자 <input type="radio" value="여" name="gender"> </label>
+        <br>
+        취미
+        <label>술 <input type="checkbox" value="술" name="hobby"> </label>
+        <label>춤 <input type="checkbox" value="춤" name="hobby"> </label>
+        <label>잠 <input type="checkbox" value="잠" name="hobby"> </label>
+        <br>
+        <select name="m" id="m">
+            <option value="">혼인여부선택</option>
+            <option value="기혼">기혼</option>
+            <option value="미혼">미혼</option>
+            <option value="비혼">비혼</option>
+        </select>
+        <br>
+        <input type="submit" value="저장하기">
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+            // 한 요소에 동일한 이벤트 3개 지정
+            elem.onclick = function () {
+                alert('감사합니다.');
+                alert(this.value);
+            };
+            elem.onclick = () => alert("안녕하세요."); // 위의 이벤트를 덮어씌움
+            // addEventListener 사용시 한 이벤트에 여러개 함수 지정가능
+            elem.addEventListener("click", handler1); // 감사합니다!
+            elem.addEventListener("click", handler2); // 다시 한번 감사합니다!
+
+            elem2.addEventListener("click", () => alert('감사합니다!'));
+
+            elem3.onclick = function (event) {
+                // 이벤트 타입과 요소, 클릭 이벤트가 발생한 좌표를 보여줌
+                alert(event.type + " 이벤트가 " + event.currentTarget + "에서 발생했습니다.");
+                alert("이벤트가 발생한 곳의 좌표는 " + event.clientX + ":" + event.clientY + "입니다.");
+            };
+        }
+
+        function clickMe(obj) {
+            alert(obj.value);
+        }
+
+        function handler1() {
+            alert('감사합니다!');
+        };
+
+        function handler2() {
+            alert('다시 한번 감사합니다!');
+        }
+    </script>
+</head>
+
+<body>
+    <input value="클릭해 주세요." onclick="alert('클릭!' + this.value);" type="button">
+    <input id="elem" type="button" value="클릭해 주세요." onclick="alert(this.value);">
+    <input type="button" value="클릭해 주세요1." onclick="clickMe(this);">
+    <button id="elem2">elem2</button>
+    <button id="elem3">elem3</button>
+</body>
+
+</html>

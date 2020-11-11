@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .selected {
+            background: pink;
+        }
+
+        li {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // 여기에 코드
+            ul.addEventListener('click', function (event) {
+                if (event.target.tagName != 'LI') return;
+                let target = event.target;
+
+                if (event.ctrlKey || event.metaKey) { // ctrl키 혹은 mac의 Fn키가 눌려있다면
+                    target.classList.toggle('selected');
+                }
+                else { // 그냥 클릭한다면
+                    let selections = ul.querySelectorAll(".selected"); // 클래스 속성이 selected인 태그들을 전부 선택
+                    for (let selection of selections) selection.classList.remove('selected'); // 태그의 클래스 selected속성을 모두 제거
+                    target.classList.add('selected'); // 해당 타겟에만 클래스 추가
+                }
+            });
+            // 아래 코드 추가시 텍스트 블럭잡기 불가능
+            // ul.onmousedown = function () {
+            //     return false;
+            // };
+        };
+    </script>
+</head>
+
+<body>
+    Click on a list item to select it.
+    <br>
+
+    <ul id="ul">
+        <li>Christopher Robin</li>
+        <li>Winnie-the-Pooh</li>
+        <li>Tigger</li>
+        <li>Kanga</li>
+        <li>Rabbit. Just rabbit.</li>
+    </ul>
+</body>
+
+</html>

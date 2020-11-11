@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 생성자 함수와 return
+        // 객체를 return 한다면, this 대신 객체가 반환됩니다.
+        // 원시형을 return 한다면, return문이 무시됩니다.
+        function BigUser() {
+            // this = {} // 암시적으로 생성
+            this.name = "한사람";
+            // return this; 암시적으로 생성되지 않는다.
+            return {
+                name: "두사람"
+            } // 객체를 return 한다면, this 대신 객체가 반환됩니다.
+        }
+        user1 = new BigUser();
+        document.writeln(user1.name + "<br>"); // 두사람
+
+        function BigUser2() {
+            // this = {} // 암시적으로 생성
+            this.name = "한사람";
+            // return this; 암시적으로 생성된다.
+            return "난뭐?"; // 원시형을 return 한다면, return문이 무시됩니다.
+        }
+        user2 = new BigUser2();
+        document.writeln(user2 + "<br>"); // "난뭐?"가 출력되지 않는다. 왜? 기본형의 리턴은 무시되고 return this가 적용됨
+        document.writeln(user2.name + "<br>"); // 한사람
+
+        function BigUser3() {
+            // this = {} // 암시적으로 생성
+            this.name = "한사람";
+            // return this; 암시적으로 생성된다.
+            return; // 아무것도 return 하지 않아도, return this;가 된다.
+        }
+        user3 = new BigUser3();
+        document.writeln(user3 + "<br>");
+        document.writeln(user3.name + "<br>");
+
+        // 생성자에 파라미터가 없으면 생성 시 괄호 생략가능
+        user4 = new BigUser3;
+        document.writeln(user4 + "<br>");
+        document.writeln(user4.name + "<br>");
+
+        // 생성자 내부 메서드
+        function User(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+
+            this.sayHi = function () {
+                alert("My name is: " + this.name);
+            };
+        }
+        let user5 = new User('goorung', 23, true);
+        document.writeln(user5 + "<br>");
+        document.writeln(user5.name + "<br>");
+        document.writeln(user5.age + "<br>");
+        document.writeln(user5.gender + "<br>");
+        document.writeln(user5.sayHi + "<br>");
+        user5.sayHi();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

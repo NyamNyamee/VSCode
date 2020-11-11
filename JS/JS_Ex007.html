@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // alert, prompt, confirm을 이용한 상호작용
+        alert('경고!');
+
+        let name = prompt('이름이 뭐니?', '입력'); // 물어볼 메시지, 기본값, 리턴타입은 string
+        alert(`${name} 님 반가워요`);
+        
+        let exp = prompt('계산식 입력?'); // 물어볼 메시지, 기본값, 리턴타입은 string
+        alert(`결과: ${exp}`); // 문자열로 출력됨
+        alert('결과2: ' + eval(exp)); // 식으로 계산되어 출력됨
+
+        if(confirm('창을 닫을것입니까?')) // confirm창에서 확인을 누르면 true, 취소를 누르면 false를 리턴
+        {
+            self.close();
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

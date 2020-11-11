@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        classList에 구현된 메서드는 다음과 같습니다.
+        elem.classList.add/remove("class") – class를 추가하거나 제거
+        elem.classList.toggle("class") – class가 존재할 경우 class를 제거하고, 그렇지 않은 경우엔 추가
+        elem.classList.contains("class") – class 존재 여부에 따라 true/false를 반환        
+        */
+        window.onload = function () {
+            console.log(document.body.className);
+            console.log(document.body.classList);
+            // 클래스 추가
+            document.body.classList.add('article');
+            console.log(document.body.className);
+            // 클래스 제거
+            document.body.classList.remove('article');
+            console.log(document.body.className);
+            // 클래스 토글(있으면 없게, 없으면 있게)
+            document.body.classList.toggle('article');
+            console.log(document.body.className);
+            document.body.classList.toggle('article');
+            // 유무 확인
+            console.log(document.body.className);
+            console.log(document.body.classList.contains('article'));
+
+
+            addStyleBtn.onclick = function () {
+                div2.style.background = 'green';
+            }
+            addClassBtn.onclick = function () {
+                div2.classList.add('box');
+            }
+            removeClassBtn.onclick = function () {
+                div2.classList.remove('box');
+            }
+            toggleClassBtn.onclick = function () {
+                div2.classList.toggle('box');
+            }
+        }
+    </script>
+    <style>
+        .box {
+            padding: 10px;
+            margin: auto;
+            width: 300px;
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body class="main page">
+    <div id="div" class="box">im div</div>
+    <div id="div2">im div</div>
+    <button id="addStyleBtn">스타일 적용</button>
+    <button id="addClassBtn">클래스 적용</button>
+    <button id="removeClassBtn">클래스 제거</button>
+    <button id="toggleClassBtn">클래스 토글</button>
+</body>
+
+</html>

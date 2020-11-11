@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+        window.onload = function () {
+            calc();
+            calculator.money.oninput = calc;
+            calculator.interest.oninput = calc;
+            calculator.months.onchange = calc;
+        }
+        function calc() {
+            // initial: 계산 전의 잔고
+            let initial = calculator.money.value;
+            // interest: 이자율. 0.05는 연 5%의 이자율을 의미합니다.
+            let interest = calculator.interest.value / 1000;
+            // years: 예금 유치 기간으로, 연 단위
+            let years = Math.round(calculator.months.value / 12);
+            let result = Math.round(initial * (1 + interest * years));
+            document.getElementById("money-before").innerHTML = initial;
+            document.getElementById("money-after").innerHTML = result;
+            document.getElementById("height-after").style.height = (100 + parseInt((result - initial) / 100)) + 'px';
+
+        }
+    </script>
+</head>
+
+<body>
+    <form name="calculator">
+        <table>
+            <tbody>
+                <tr>
+                    <td>예치금액</td>
+                    <td>
+                        <input name="money" type="number" value="10000" required="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>예치기간</td>
+                    <td>
+                        <select name="months">
+                            <option value="3">3 (최단 예치기간)</option>
+                            <option value="6">6 (반년)</option>
+                            <option value="12" selected="">12 (1년)</option>
+                            <option value="18">18 (1.5년)</option>
+                            <option value="24">24 (2년)</option>
+                            <option value="30">30 (2.5년)</option>
+                            <option value="36">36 (3년)</option>
+                            <option value="60">60 (5년)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>연이자율</td>
+                    <td>
+                        <input name="interest" type="number" value="5" required="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="diagram">
+            <tbody>
+                <tr>
+                    <th>원금</th>
+                    <th>만기지급금액</th>
+                </tr>
+                <tr>
+                    <th id="money-before"></th>
+                    <th id="money-after"></th>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <div style="background: red;width:40px;height:100px"></div>
+                    </td>
+                    <td valign="bottom">
+                        <div style="background: green; width: 40px; height: 100px; margin-left: 30px;" id="height-after"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+
+</html>

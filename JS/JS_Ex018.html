@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       // 함수
+       // 지역 변수 : 함수 내에서 선언한 변수인 지역 변수(local variable)는 함수 안에서만 접근할 수 있습니다.
+       let x = '나는 전역변수';
+       function var_fn(){
+           // document.writeln(x); // 에러 초기화되지 않은 변수 사용
+           let x = '나는 지역변수';
+           document.writeln(x);  // 겹치면 지역변수 우선
+           let y = '하하하하';
+        }
+
+        var_fn();
+        document.writeln(x);
+        // document.writeln(y); // 함수 안에서 선언한 변수는 함수 안에서만
+
+        var z = 1234;
+        function var_fn2(){
+           document.writeln(x); 
+           document.writeln(z); 
+        }
+        var_fn2();
+        document.writeln(z); 
+
+        let userName = 'John';
+        function showMessage() {
+            let message = 'Hello, ' + userName;
+            alert(message);
+        }
+
+        showMessage();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

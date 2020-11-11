@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+            // 객체 형태의 이벤트핸들러 지정
+            let obj = {
+                handleEvent(event) {
+                    alert(event.type + " 이벤트가 " + event.currentTarget + "에서 발생했습니다.");
+                }
+            };
+            elem.addEventListener('click', obj);
+
+            let menu = new Menu();
+            elem2.addEventListener('mousedown', menu);
+            elem2.addEventListener('mouseup', menu);
+
+            let menu2 = new Menu2();
+            elem3.addEventListener('mousedown', menu2);
+            elem3.addEventListener('mouseup', menu2);
+        }
+
+        class Menu {
+            handleEvent(event) {
+                switch (event.type) {
+                    case 'mousedown':
+                        elem2.innerHTML = "마우스 버튼을 눌렀습니다.";
+                        break;
+                    case 'mouseup':
+                        elem2.innerHTML = " 그리고 버튼을 뗐습니다.";
+                        break;
+                }
+            }
+        }
+
+        class Menu2 {
+            handleEvent(event) {
+                // mousedown -> onMousedown
+                let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+                this[method]();
+            }
+
+            onMousedown() {
+                elem3.innerHTML = "마우스 버튼을 눌렀습니다.";
+            }
+
+            onMouseup() {
+                elem3.innerHTML = " 그리고 버튼을 뗐습니다.";
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <button id="elem">elem</button>
+    <button id="elem2">elem2</button>
+    <button id="elem3">elem3</button>
+</body>
+
+</html>

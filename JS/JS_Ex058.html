@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // getElementBy, getElementsBy
+            // querySelector를 이용하는 게 더 편리하고 문법도 짧아서, 요즘은 이런 메서드들을 잘 쓰진 않습니다.
+            let inputs = table.getElementsByTagName('input');
+            inputs = table.getElementsByName("age");
+            for (let input of inputs) {
+                alert(input.value + ': ' + input.checked);
+            }
+
+            // name 속성을 이용해 검색
+            let form = document.getElementsByName('my-form')[0];
+            // fomr 내에서 클래스 이름을 이용해 검색
+            let articles = form.getElementsByClassName('article');
+            alert(articles.length); // 2. 클래스 속성값이 'article'인 요소는 2개입니다.
+        }
+    </script>
+</head>
+
+<body>
+    <form name="my-form">
+        <div class="article">글</div>
+        <div class="long article">내용이 긴 글</div>
+    </form>
+
+    <table id="table">
+        <tr>
+            <td>나이:</td>
+            <td>
+                <label>
+                    <input type="radio" name="age" value="young" checked> 18세 미만
+                </label>
+                <label>
+                    <input type="radio" name="age" value="mature"> 18세 이상, 60세 미만
+                </label>
+                <label>
+                    <input type="radio" name="age" value="senior"> 60세 이상
+                </label>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

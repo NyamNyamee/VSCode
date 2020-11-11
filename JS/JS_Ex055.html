@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            let elem = document.getElementById('elem'); // id가 elem인 태그 찾기
+            elem.style.background = 'red';
+            document.querySelector('#elem2').style.background = 'pink'; // id가 elem2인 태그 찾기
+            elem3.style.background = 'skyblue'; // id로 직접 접근 가능
+        }
+    </script>
+</head>
+
+<body>  
+    <div id="elem">
+        <div id="elem-content">Element</div>
+    </div>
+    <div id="elem2">
+        <div id="elem-content2">Element2</div>
+    </div>
+    <div id="elem3">
+        <div id="elem-content3">Element3</div>
+    </div>
+</body>
+
+</html>

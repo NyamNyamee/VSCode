@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        // UI 이벤트
+        // 용자 인터페이스(user interface)에 사용되는 중요 이벤트
+        window.onload = function () {
+            // 마우스 이벤트
+            /*
+            mousedown·mouseup : 요소 위에서 마우스 왼쪽 버튼을 누를 때, 마우스 버튼 누르고 있다가 뗄 때 발생합니다.
+            mouseover·mouseout : 마우스 커서가 요소 바깥에 있다가 요소 안으로 움직일 때, 커서가 요소 위에 있다가 요소 밖으로 움직일 때 발생합니다.
+            mousemove : 마우스를 움직일 때 발생합니다.
+            click : 마우스 왼쪽 버튼을 사용해 동일한 요소 위에서 mousedown 이벤트와 mouseup 이벤트를 연달아 발생시킬 때 실행됩니다.
+            dblclick : 동일한 요소 위에서 마우스 왼쪽 버튼을 빠르게 클릭할 때 발생합니다. 
+                       요즘엔 잘 쓰이지 않습니다.
+            contextmenu : 마우스 오른쪽 버튼을 눌렀을 때 발생합니다. 
+                          참고로 특별한 단축키를 눌러도 마우스 오른쪽 버튼을 눌렀을 때처럼 
+                          컨텍스트 메뉴가 나타나게 할 수는 있지만 contextmenu라는 마우스 이벤트와 
+                          동일하진 않습니다.            
+            */
+
+        };
+    </script>
+</head>
+
+<body>
+    <button id="button">Alt, Shift 키를 누른 상태에서 클릭해주세요!</button>
+
+    <script>
+        button.onclick = function (event) {
+            if (event.altKey && event.shiftKey) {
+                alert('야호!' + event.button);
+            }
+        };
+    </script>
+    <br>
+    <hr>
+    <!-- 이상태는 dblclick 무시-->
+    <span ondblclick="alert('dblclick')" onclick="alert('click');">이곳을 더블클릭해주세요1.</span>
+    <br>
+    <hr>
+    <span ondblclick="alert('dblclick')" onclick="return false;">이곳을 더블클릭해주세요2.</span>
+    <br>
+    <hr>
+    <span ondblclick="alert('dblclick')">이곳을 더블클릭해주세요3.</span>
+    <br>
+    <hr>
+    <b ondblclick="alert('dblclick!')" onmousedown="return false;">
+        여기를 더블클릭해주세요4.
+    </b>
+    <br>
+    <hr>
+    <div oncopy="alert('불법 복제를 예방하기 복사 기능을 막아놓았습니다!'); return false;">
+        이 내용을 복사할 수 없습니다
+    </div>
+</body>
+
+</html>

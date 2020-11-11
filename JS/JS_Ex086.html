@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            showNotification({
+                top: 10, // 창의 상단에서 10px 떨어진 위치에 표시합니다(기본값은 0px).
+                right: 10, // 창의 오른쪽 가장자리에서 10px 떨어진 위치에 표시합니다(기본값은 0px).
+                html: "하이요1!", // 알림의 내용입니다.
+                className: "welcome" // div에 대한 추가 클래스입니다(선택 사항).
+            });
+            showNotification({
+                top: 30, // 창의 상단에서 10px 떨어진 위치에 표시합니다(기본값은 0px).
+                right: 30, // 창의 오른쪽 가장자리에서 10px 떨어진 위치에 표시합니다(기본값은 0px).
+                html: "하이요2!", // 알림의 내용입니다.
+                className: "welcome" // div에 대한 추가 클래스입니다(선택 사항).
+            });
+
+            let i = 1;
+            setInterval(() => {
+                showNotification({
+                    top: 50,
+                    right: 50,
+                    html: 'Hello ' + i++,
+                    className: "welcome"
+                });
+            }, 2000);
+        }
+        function showNotification({ top = 0, right = 0, className, html }) {
+            let notification = document.createElement('div');
+            notification.className = "notification";
+            if (className) {
+                notification.classList.add(className);
+            }
+
+            notification.style.top = top + 'px';
+            notification.style.right = right + 'px';
+
+            notification.innerHTML = html;
+            document.body.append(notification);
+
+            setTimeout(() => notification.remove(), 1500); // 1.5초 후 제거
+        }
+    </script>
+    <style>
+        .notification {
+            position: fixed;
+            z-index: 1000;
+            padding: 5px;
+            border: 1px solid black;
+            font-size: 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .welcome {
+            background: #b80000;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Notification is on the right</h2>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod
+        voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime
+        necessitatibus beatae labore soluta voluptatum
+        magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit
+        impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt
+        aut iure ipsum officiis soluta
+        temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo
+        sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+</body>
+
+</html>

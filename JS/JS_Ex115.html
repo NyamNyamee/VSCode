@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            height: 2000px;
+            /* the tooltip should work after page scroll too */
+        }
+
+        .tooltip {
+            position: fixed;
+            z-index: 100;
+
+            padding: 10px 20px;
+
+            border: 1px solid #b3c9ce;
+            border-radius: 4px;
+            text-align: center;
+            font: italic 14px/1.3 sans-serif;
+            color: #333;
+            background: #fff;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+        }
+
+        #house {
+            margin-top: 50px;
+            width: 400px;
+            border: 1px solid brown;
+        }
+
+        #roof {
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 20px solid brown;
+            margin-top: -20px;
+        }
+
+        p {
+            text-align: justify;
+            margin: 10px 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div data-tooltip="Here is the house interior" id="house">
+        <div data-tooltip="Here is the roof" id="roof"></div>
+
+        <p>Once upon a time there was a mother pig who had three little pigs.</p>
+        <p>The three little pigs grew so big that their mother said to them, "You are too big to live here any longer.
+            You must go and build houses for yourselves. But take care that the wolf does not catch you."
+        <p>The three little pigs set off. "We will take care that the wolf does not catch us," they said.</p>
+
+        <p>Soon they met a man.
+            <a href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs" data-tooltip="Read on…">Hover over me</a>
+        </p>
+    </div>
+
+    <script>
+        let tooltip; // 여러 함수에서 사용하므로 전역변수로 선언
+        document.onmouseover = function (event) { // 문서 전체에  onmouseover이벤트 지정
+            // data-tooltip 속성을 찾기
+            let anchorElem = event.target.closest('[data-tooltip]');
+            if (!anchorElem) return; // 없으면 작동안함
+
+            // 툴팁을 보여줘
+            tooltip = showTooltip(anchorElem, anchorElem.dataset.tooltip);
+        }
+        document.onmouseout = function () {  // 문서 전체에  onmouseout이벤트 지정
+            if (tooltip) { // 툴팁이 존재하면 지워줘!!!
+                tooltip.remove();
+                tooltip = false;
+            }
+        }
+        // 툴팁을 보여주는 함수
+        function showTooltip(anchorElem, html) {
+            // 툴팁 만들기
+            let tooltipElem = document.createElement('div'); // 태그 작성
+            tooltipElem.className = 'tooltip'; // 클래스이름 부여
+            tooltipElem.innerHTML = html; // 내용 넣고
+            document.body.append(tooltipElem); // body에 붙이고
+
+            let coords = anchorElem.getBoundingClientRect(); // 이벤트가 발생한 요소의 위치를 얻고
+
+            // 툴팁이 나타날 위치 계산
+            // 이벤트가 발생한 요소의 중앙값 계산 
+            let left = coords.left + (anchorElem.offsetWidth - tooltipElem.offsetWidth) / 2;
+            if (left < 0) left = 0; // 경계체크. 왼쪽값이 음수면 잘려서 보이므로 0으로 만듬
+            // 상단 좌표 계산
+            let top = coords.top - tooltipElem.offsetHeight - 5;
+            if (top < 0) { // 음수면 위가아닌 아래로 보낸다.
+                top = coords.top + anchorElem.offsetHeight + 5;
+            }
+            // 위치를 변경
+            tooltipElem.style.left = left + 'px';
+            tooltipElem.style.top = top + 'px';
+            // 툴팁리턴
+            return tooltipElem;
+        }
+
+    </script>
+
+</body>
+
+</html>

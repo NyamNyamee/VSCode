@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 이름 오름차순 정렬
+            nameSort.onclick = function () {
+                let rows = Array.from(table.tBodies[0].rows); // 테이블의 모든 행을 배열로 생성
+                rows.sort((row1, row2) => row1.cells[0].innerHTML.localeCompare(row2.cells[0].innerHTML)); // 행의 0번째 열(name)의 내용을 기준으로 오름차순 정렬
+                table.tBodies[0].append(...rows); // 정렬된 배열을 테이블에 추가
+            }
+            // 나이 내림차순 정렬
+            ageSort.onclick = function () {
+                let rows = Array.from(table.tBodies[0].rows);
+                rows.sort((row1, row2) => row2.cells[2].innerHTML - row1.cells[2].innerHTML);
+                table.tBodies[0].append(...rows);
+            }
+        }
+    </script>
+    <style>
+        #table{
+            width: 500px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" id="table">
+        <thead>
+            <tr>
+                <th>Name <div><button id="nameSort">이름 오름차순 정렬</button> <br> <button id="nameSort2">이름 내림차순 정렬</button></div></th>
+                <th>Surname</th>
+                <th>Age <button id="ageSort">나이 내림차순 정렬</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Smith</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Pete</td>
+                <td>Brown</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Ann</td>
+                <td>Lee</td>
+                <td>5</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+</body>
+
+</html>

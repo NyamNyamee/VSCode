@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .invalid {
+            border-color: red;
+            text-decoration: line-through;
+        }
+
+        #error {
+            color: red
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            input.onblur = function () { // 포커스가 빠져나갔을때
+                if (!input.value.includes('@')) { // 인풋값에 @이 포함되지 않았다면
+                    input.classList.add('invalid'); // 인풋태그에 클래스 추가
+                    error.innerHTML = 'Please enter a correct email.' // 에러메시지 생성
+                }
+            };
+
+            input.onfocus = function () {
+                if (this.classList.contains('invalid')) { // invalid클래스가 적용되어있다면
+                    // remove the "error" indication, because the user wants to re-enter something
+                    this.classList.remove('invalid'); // 적용을 취소하고
+                    error.innerHTML = ""; // 에러미시지 제거
+                }
+            };
+        }
+    </script>
+</head>
+
+<body>
+    Your email please: <input type="email" id="input">
+
+    <div id="error"></div>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // a == b가 true가 되는 a, b함수 만들기
+        let obj = {}; // 외부 객체 생성
+        function A() { return obj; } // A, B 생성자 함수 모두 같은 객체를 리턴
+        function B() { return obj; }
+
+        let a = new A; // 생성자로 새 객체 생성
+        let b = new B;
+
+        alert(a == b); // true
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

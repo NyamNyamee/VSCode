@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+
+    </style>
+    <script>
+        window.onload = function () {
+            hideBtn.onclick = function () {
+                text.hidden = true;
+            }
+            showBtn.addEventListener("click", function () {
+                text.hidden = false;
+            });
+            hideSelfBtn.addEventListener("click", function () {
+                this.hidden = true;
+            });
+
+            button.addEventListener("click", () => alert("1")); // 클릭 이벤트 생성
+            button.removeEventListener("click", () => alert("1")); // 이 코드는 실행되지 않았음
+            button.onclick = () => alert(2); // 클릭 이벤트 생성
+
+            button.addEventListener("click", handler);
+            button.removeEventListener("click", handler); // 이 코드는 실행됨. 즉 이벤트핸들러 함수를 정의해놓고 사용할때만 제거 가
+
+            button2.addEventListener("click", handler2);
+        }
+
+        function handler() {
+            alert(3);
+        }
+
+        function handler2() {
+            alert('한번만 실행됨');
+            button2.removeEventListener("click", handler2); // 함수 호출 시 자신(함수)를 제거하여 한번만 작동되게 함
+        }
+    </script>
+</head>
+
+<body>
+    <button id="hideBtn">hide text</button>
+    <button id="showBtn">show text</button>
+    <div id="text">dd</div>
+    <button id="hideSelfBtn">hide me</button>
+    <button id="button">button</button>
+    <button id="button2">button2</button>
+</body>
+
+</html>

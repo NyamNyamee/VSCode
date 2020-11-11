@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트!!!</title>
+    <style>
+        .menu ul {
+            margin: 0;
+            list-style: none;
+            padding-left: 20px;
+            display: none;
+        }
+
+        .menu .title {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .menu .title::before {
+            content: '▶ ';
+            font-size: 80%;
+            color: green;
+        }
+
+        .menu.open .title::before {
+            content: '▼ ';
+        }
+
+        .menu.open ul {
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let menuElem = document.getElementById('sweeties');
+            let titleElem = menuElem.querySelector('.title');
+
+            titleElem.onclick = function () {
+                menuElem.classList.toggle('open'); // 클릭시마다 open 클래스 주입/제거
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <div id="sweeties" class="menu">
+        <span class="title">Sweeties (click me)!</span>
+        <ul>
+            <li>Cake</li>
+            <li>Donut</li>
+            <li>Honey</li>
+        </ul>
+    </div>
+</body>
+
+</html>

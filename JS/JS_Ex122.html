@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .view,
+        .edit {
+            height: 150px;
+            width: 400px;
+            font-family: sans-serif;
+            font-size: 14px;
+            display: block;
+        }
+
+        .view {
+            /* padding + border = 3px */
+            padding: 2px;
+            border: 1px solid black;
+        }
+
+        .edit {
+            /* replace padding with border (still 3px not to shift the contents) */
+            border: 3px solid blue;
+            padding: 0px;
+        }
+
+        .edit:focus {
+            /* remove focus border in Safari */
+            outline: none;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>Click the div to edit.</li>
+        <li>Enter or blur saves the result.</li>
+    </ul>
+
+    HTML is allowed.
+
+    <div id="view" class="view">Text</div>
+
+    <script>
+        // 여기에 코드
+        let area = null; // 전역변수 선언
+        let view = document.getElementById('view'); // view를 찾고
+        // view를 클릭하면
+        view.onclick = function () {
+            editStart(); // 함수 실행
+        };
+        // div태그가 편집이 가능하도록 만든다.
+        function editStart() {
+            area = document.createElement('textarea'); // textarea태그를 만들고
+            area.className = 'edit'; // 모양변경 클래스를 적용하고
+            area.value = view.innerHTML; // div내용을 textarea에 넣고
+            // textarea에 이벤트 지정 :  엔터키를 치면 포커스를 빼고!!! --  편집 종료
+            area.onkeydown = function (event) {
+                if (event.key == 'Enter') {
+                    this.blur();
+                }
+            };
+            // 포커스를 잃었을때 이벤트 지정 
+            area.onblur = function () {
+                editEnd(); // 함수 실행
+            };
+
+            view.replaceWith(area); // view의 내용을 area로 변경
+            area.focus(); // area에 포커스 위치
+        }
+        // 포커스가 떠나면 다시 div태그로 만든다.
+        function editEnd() {
+            view.innerHTML = area.value; // area의 내용을 view의 내용으로 변경
+            area.replaceWith(view); // area를 다시 view로 변경
+        }
+    </script>
+</body>
+
+</html>

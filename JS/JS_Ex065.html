@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // alert(div.data-about); // -때문에 에러
+            div.innerHTML += div['data-about'] + "<br>";
+            div.innerHTML += div.getAttribute('data-about')  + "<br>";
+            div.innerHTML += div.dataset.about  + "<br>"; // data-로 시작되는 비표준 속성만 dataset. 사용가능
+
+            div2.innerHTML += div2['data-order-state'] + "<br>";
+            div2.innerHTML += div2.getAttribute('data-order-state') + "<br>";
+            div2.innerHTML += div2.dataset.orderState + "<br>"; // -가 여러개이면 카멜표기법으로 변경하면 가능
+
+        }
+    </script>
+    <style>
+        div {
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid purple;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='div' data-about="Elephants"></div> <!-- 비표준 속성이 data-... -->
+    <div id='div2' data-order-state="Giraffe"></div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="JS_Ex020.js"></script>
+    <script>
+        let ar = [];
+        for(let i=0;i<10;i++){
+            // 난수
+            document.writeln(Math.random(), "<br>")
+        }
+        for(let i=0;i<10;i++){
+            document.writeln(Math.round(Math.random()*50)+50, "<br>");
+            ar.push(Math.round(Math.random()*50)+50); // 배열에 값 추가
+        }
+        document.writeln("<hr>");
+        document.writeln( ar, "<br>");
+        document.writeln( sum(1,2,3), "<br>");
+        document.writeln( sum(1,2,3,4,5,6,7), "<br>");
+        document.writeln( sum("한놈","두식이","석삼"), "<br>");
+        m1 = m2 = ar[0];
+        for(let i in ar){
+            m1 = max(ar[i], m1);
+            m2 = min(ar[i], m2);
+            document.writeln("2의 ", i ,"승  = ", power(2,i), "<br>");
+        }
+        document.writeln("최소값 : ", m2, "<br>");
+        document.writeln("최대값 : ", m1, "<br>");
+        document.writeln("<hr>");
+        // 함수를 인수로 넘길수 있다.
+        document.writeln(minmax(max,12,34), "<br>")
+        document.writeln(minmax(min,12,34), "<br>");
+        document.writeln("<hr>");
+
+        // 함수를 리턴받는 함수
+        document.writeln(fn(5)(), "<br>");
+        let f = fn(7);
+        document.writeln(f(), "<br>");
+        
+        count1 = count(0);
+        count2 = count(0);
+        document.writeln(count1(), "<br>");
+        document.writeln(count1(), "<br>");
+        document.writeln(count1(), "<br>");
+        document.writeln(count1(), "<br>");
+        document.writeln(count2(), "<br>");
+        document.writeln(count2(), "<br>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

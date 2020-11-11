@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // document.body.style.color = 'green'; // 에러. 아직 body태그가 만들어지지 않았는데 사용했으므로
+        window.onload = function () { // 에러를 막기 위해 html을 모두 로드한 후 코드를 실행
+            document.body.style.backgroundColor = 'pink';
+            document.body.style.color = 'red';
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+            <td>004</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+            <td>004</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>002</td>
+            <td>003</td>
+            <td>004</td>
+        </tr>
+    </table>
+</body>
+
+</html>

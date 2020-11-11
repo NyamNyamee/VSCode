@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 사용자에게 두 수를 입력받고, 두 수의 합을 출력해주는 스크립트를 작성해보세요.
+        let a = +prompt('첫번째 수', 0);
+        let b = +prompt('두번째 수', 0);
+        alert(a + b);
+
+        // 6.35.toFixed(1) == 6.3인 이유는 무엇일까요?
+        let n1 = 6.35;
+        document.writeln(n1.toFixed(20)); // 소수는 정확하지 않다
+        document.writeln(n1.toFixed(1));
+        let n2 = n1 * 10;
+        document.writeln(Math.round(n2) / 10);
+
+        let s1 = 'a';
+        let s2 = 2;
+        console.log(isFinite(s1));
+        console.log(isFinite(s2));
+
+        // 숫자를 입력할 때까지 반복하기
+        function readNumber() {
+            let num;
+            do {
+                num = prompt("숫자 입력", 0);
+            } while (!isFinite(num)); // 숫자가 아니라면 반복
+
+            if (num === null || num === '') return null;
+
+            return +num;
+        }
+        document.writeln(readNumber(), "<br>");
+
+        /* An occasional infinite loop 이 반복문은 무한루프이다. 왜일까
+        let i = 0;
+        while (i != 10) {
+            i += 0.2; // 소수는 불완전하기때문에 절대로 정확히 10이 될 수 없다
+        }
+        */
+
+        // A random number from min to max. min이상 max미만의 랜덤값을 리턴하는 random(min, max)함수를 생성하라
+        function random(min, max) {
+            return min + Math.random() * (max - min);
+        }
+        document.writeln(random(2,5));
+        document.writeln(random(2,5));
+        document.writeln(random(2,5));
+        document.writeln(random(2,5));
+        document.writeln(random(2,5));
+
+        // A random integer from min to max ??
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
